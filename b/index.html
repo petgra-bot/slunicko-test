@@ -113,6 +113,54 @@ p{margin:0 0 1em}
 .reveal{transition:transform .7s var(--ease-out),opacity .7s var(--ease-out)}
 .anim .reveal:not(.in){transform:translateY(22px);opacity:.35}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.anim .reveal:not(.in){opacity:1;transform:none}}
+/* --- kompaktní rozložení + lišta otevírací doby --- */
+.section{padding:clamp(40px,6vw,72px) 0}
+.openbar{font-size:14px;border-top:1px solid var(--line)}
+.openbar-in{display:flex;gap:18px;align-items:center;min-height:36px;flex-wrap:wrap}
+.ob-state{font-weight:700}
+.ob-state.is-open::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#3E9B4F;margin-right:8px;box-shadow:0 0 0 3px rgba(62,155,79,.22)}
+.ob-state.is-closed::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#C73E5A;margin-right:8px}
+.ob-hours{opacity:.85}
+.ob-where{margin-left:auto;opacity:.85}
+.perks{padding:28px 0;border-bottom:1px solid var(--line)}
+.perks-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.perk{display:flex;gap:12px;align-items:center}
+.perk .ico{width:44px;height:44px;flex:none}
+.perk p{margin:0;line-height:1.3}
+.perk strong{display:block}
+.perk span{font-size:14px;opacity:.8}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.sec-head h2{margin-bottom:0}
+.device-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
+.device-body{padding:16px 18px 18px}
+.device h3{font-size:19px}
+.device ul{font-size:15px;margin-bottom:12px}
+.device-img img{aspect-ratio:16/11}
+.perm{margin-top:28px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;align-items:center}
+.perm-head p{margin:0;font-size:15px}
+.perm table{margin-top:0}
+.review-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px}
+.reviews-cta{margin:0}
+.acc{align-self:start}
+.acc .tip{padding:16px 0}
+.tips{padding-left:18px;margin:12px 0 0;font-size:15px}
+.tips li{margin-bottom:8px}
+.steps{margin:12px 0 0}
+.ftypes{margin:12px 0 0}
+.contact-phone{margin-top:0}
+.map-wrap{margin-top:32px}
+@media (max-width:960px){
+  .perks-in{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .device-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .perm{grid-template-columns:1fr}
+  .ob-where{display:none}
+}
+@media (max-width:760px){
+  .device-grid,.review-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-left:-20px;margin-right:-20px;padding:0 20px 8px;scrollbar-width:none}
+  .device-grid::-webkit-scrollbar,.review-grid::-webkit-scrollbar{display:none}
+  .device,.review{flex:0 0 78%;scroll-snap-align:start}
+  .ob-hours{display:none}
+}
 @media (max-width:960px){
   .nav{display:none}
   .header-in{justify-content:space-between}
@@ -194,9 +242,16 @@ h3{font-weight:700;letter-spacing:-.01em}
   <span class="logo-text"><span class="logo-name">Sluníčko</span><span class="logo-strip">Solární studio</span></span>
 </a>
     <nav class="nav" aria-label="Hlavní menu">
-      <a href="#studio">Studio</a><a href="#luzka">Solária</a><a href="#cenik">Ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
+      <a href="#luzka">Solária a ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
     </nav>
     <a class="btn btn-call" href="tel:+420720345340"><img class="ico-s" src="../assets/icons/linka/telefon-maly.svg" width="22" height="22" alt=""><span>+420 720 345 340</span></a>
+  </div>
+  <div class="openbar">
+    <div class="wrap openbar-in">
+      <span class="ob-state" data-open-now>Po–Pá 9–21 · So, Ne a svátky 12–20</span>
+      <span class="ob-hours">Po–Pá <b>9–21</b> · So, Ne a svátky <b>12–20</b></span>
+      <a class="ob-where" href="#kontakt">Dolnojirčanská 40, Kamýk</a>
+    </div>
   </div>
 </header>
 
@@ -218,31 +273,29 @@ h3{font-weight:700;letter-spacing:-.01em}
 </section>
 
 
-<section class="section why" id="studio">
-  <div class="wrap">
-    <p class="eyebrow reveal">Proč k nám</p>
-    <h2 class="reveal">Rodinné studio, kde vás znají jménem</h2>
-    <p class="lead reveal">Na Kamýku jsme pro vás už bezmála dvacet let. Pečujeme o techniku, o čistotu – a hlavně o vás.</p>
-    <div class="why-grid">
-      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/pece.svg" width="48" height="48" alt=""><h3>Osobní přístup</h3><p>Poradíme s délkou opalování podle typu pleti. Žádný spěch, žádný tlak.</p></div>
-      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/rucnik.svg" width="48" height="48" alt=""><h3>Vše připraveno</h3><p>V kabince čeká ručník, odličovací voda, tamponky, čelenka i gumička do vlasů.</p></div>
-      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/slunce.svg" width="48" height="48" alt=""><h3>Technika Ergoline</h3><p>Pět udržovaných solárií od předního výrobce – vleže i vestoje.</p></div>
-      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/provozovna.svg" width="48" height="48" alt=""><h3>Parkování u dveří</h3><p>Zaparkujete přímo před studiem. Na recepci si můžete dát i kávu.</p></div>
-    </div>
+<section class="perks" id="studio" aria-label="Proč k nám">
+  <div class="wrap perks-in">
+    <div class="perk"><img class="ico" src="../assets/icons/linka/pece.svg" width="48" height="48" alt=""><p><strong>Osobní přístup</strong><span>Poradíme s minutami podle pleti</span></p></div>
+    <div class="perk"><img class="ico" src="../assets/icons/linka/rucnik.svg" width="48" height="48" alt=""><p><strong>Vše připraveno</strong><span>Ručník, odličovací voda, čelenka</span></p></div>
+    <div class="perk"><img class="ico" src="../assets/icons/linka/slunce.svg" width="48" height="48" alt=""><p><strong>5 solárií Ergoline</strong><span>Vleže i vestoje</span></p></div>
+    <div class="perk"><img class="ico" src="../assets/icons/linka/provozovna.svg" width="48" height="48" alt=""><p><strong>Parkování u dveří</strong><span>A káva na recepci</span></p></div>
   </div>
 </section>
 
 <section class="section devices" id="luzka">
   <div class="wrap">
-    <p class="eyebrow reveal">Naše solária</p>
-    <h2 class="reveal">Vleže, nebo vestoje – vyberte si</h2>
+    <div class="sec-head">
+      <div><p class="eyebrow reveal">Solária a ceník</p>
+      <h2 class="reveal">Vleže, nebo vestoje – vyberte si</h2></div>
+      <a class="link-arrow reveal" href="../assets/cenik_2025.pdf" target="_blank" rel="noopener">Ceník v PDF</a>
+    </div>
     <div class="device-grid">
       <article class="device reveal">
         <div class="device-img"><img src="../assets/img/ergoline-1600.jpg" alt="Ergoline 1600 Hybrid Performance LED" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
           <p class="device-type">2× horizontální solárium (vleže)</p>
           <h3>Ergoline 1600 Hybrid Performance LED</h3>
-          <ul><li>Kombinace UV a kolagenového světla</li><li>Intenzivní a rovnoměrné opálení</li><li>Klimatizace Climatronic, osvěžení Aqua Fresh</li><li>Aroma a vlastní hudba</li></ul>
+          <ul><li>Kombinace UV a kolagenového světla</li><li>Intenzivní a rovnoměrné opálení</li></ul>
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
         </div>
       </article>
@@ -251,7 +304,7 @@ h3{font-weight:700;letter-spacing:-.01em}
         <div class="device-body">
           <p class="device-type">horizontální solárium (vleže)</p>
           <h3>Ergoline Pure</h3>
-          <ul><li>48 UV trubic, UVA LED a UVB lampy</li><li>Dotykový displej 7″</li><li>Lehátko Multi Relax, klimatizace Air Condition Plus</li><li>Zvuk Cinematic a Bluetooth</li></ul>
+          <ul><li>48 UV trubic, UVA LED a UVB lampy</li><li>Dotykový displej 7″</li></ul>
           <p class="device-price"><strong>18 Kč</strong> / minuta</p>
         </div>
       </article>
@@ -260,7 +313,7 @@ h3{font-weight:700;letter-spacing:-.01em}
         <div class="device-body">
           <p class="device-type">vertikální solárium (vestoje)</p>
           <h3>Ergoline 980</h3>
-          <ul><li>51 prodloužených UV trubic 200 W</li><li>Osvěžení Aqua Fresh</li><li>Aroma</li><li>3D zvuk</li></ul>
+          <ul><li>51 prodloužených UV trubic 200 W</li><li>Osvěžení Aqua Fresh</li></ul>
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
         </div>
       </article>
@@ -274,26 +327,10 @@ h3{font-weight:700;letter-spacing:-.01em}
         </div>
       </article>
     </div>
-  </div>
-</section>
-
-<section class="section prices" id="cenik">
-  <div class="wrap prices-in">
-    <div class="prices-text">
-      <p class="eyebrow reveal">Ceník</p>
-      <h2 class="reveal">Platíte jen za minuty, které si opravdu dopřejete</h2>
-      <ul class="price-list reveal">
-        <li><span>Ergoline 1600 Hybrid · Ergoline 980</span><strong>24 Kč / min</strong></li>
-        <li><span>Ergoline Pure · Tower 800</span><strong>18 Kč / min</strong></li>
-      </ul>
-      <p class="reveal note">Dárkové poukazy a solární kosmetiku koupíte přímo na recepci.</p>
-      <p class="reveal"><a class="link-arrow" href="../assets/cenik_2025.pdf" target="_blank" rel="noopener">Ceník ke stažení (PDF)</a></p>
-    </div>
-    <div class="perm reveal">
-      <h3>Permanentky s bonusem až 40 %</h3>
-      <p>Čím víc nabijete, tím víc minut dostanete navíc.</p>
+    <div class="perm reveal" id="cenik">
+      <div class="perm-head"><h3>Permanentky s bonusem až 40 %</h3><p>Čím víc nabijete, tím víc minut dostanete navíc. Dárkové poukazy a kosmetika na recepci.</p></div>
       <table>
-        <thead><tr><th>Zaplatíte</th><th>Dostanete navíc</th><th>Celkem k opalování</th></tr></thead>
+        <thead><tr><th>Zaplatíte</th><th>Navíc</th><th>Kredit</th></tr></thead>
         <tbody>
             <tr><td>1 000 Kč</td><td class="bonus">+200 Kč <span>(20 %)</span></td><td><strong>1 200 Kč</strong></td></tr>
             <tr><td>1 500 Kč</td><td class="bonus">+400 Kč <span>(27 %)</span></td><td><strong>1 900 Kč</strong></td></tr>
@@ -308,18 +345,18 @@ h3{font-weight:700;letter-spacing:-.01em}
 
 <section class="section reviews" id="recenze">
   <div class="wrap">
-    <div class="rating reveal">
-      <span class="rating-num" data-count="4.9" data-dec="1">4,9</span>
-      <span class="rating-stars" aria-hidden="true">★★★★★</span>
-      <span class="rating-sub">přes 185 hodnocení na Googlu</span>
+    <div class="sec-head">
+      <div class="rating reveal">
+        <span class="rating-num" data-count="4.9" data-dec="1">4,9</span>
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        <span class="rating-sub">přes 185 hodnocení na Googlu</span>
+      </div>
+      <p class="reviews-cta reveal">
+        <a class="btn btn-ghost" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener">Všechny recenze</a>
+        <a class="btn btn-main" href="https://g.page/r/Cf-N0-ez6bjIEBM/review" target="_blank" rel="noopener"><img class="ico-s" src="../assets/icons/linka/hvezda-maly.svg" width="22" height="22" alt=""><span>Ohodnoťte nás</span></a>
+      </p>
     </div>
-    <h2 class="reveal">Co o nás říkají klienti</h2>
     <div class="review-grid">
-        <figure class="review reveal">
-          <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
-          <blockquote>„Krásně čisté a útulné prostředí. Paní moc milá a usměvavá, vše krásně vysvětlí a poradí. Je to místo, kam se budu ráda vracet.“</blockquote>
-          <figcaption>M. O. · Google</figcaption>
-        </figure>
         <figure class="review reveal">
           <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
           <blockquote>„Paní majitelka je úžasná a milá paní, solária nádherně opalují, všude čisto a nejlepší jsou doplňky v kabince – micelární voda, tamponky, ručníky, čelenka i gumičky.“</blockquote>
@@ -336,43 +373,26 @@ h3{font-weight:700;letter-spacing:-.01em}
           <figcaption>L. J. · Google</figcaption>
         </figure>
     </div>
-    <p class="reviews-cta reveal">
-      <a class="btn btn-ghost" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener">Všechny recenze na Googlu</a>
-      <a class="btn btn-main" href="https://g.page/r/Cf-N0-ez6bjIEBM/review" target="_blank" rel="noopener"><img class="ico-s" src="../assets/icons/linka/hvezda-maly.svg" width="22" height="22" alt=""><span>Ohodnoťte nás</span></a>
-    </p>
   </div>
 </section>
 
 <section class="section advice" id="rady">
   <div class="wrap advice-in">
     <div>
-      <p class="eyebrow reveal">Jdete poprvé?</p>
-      <h2 class="reveal">Jak to u nás probíhá</h2>
-      <ol class="steps">
-        <li class="reveal"><strong>Zavolejte, nebo rovnou přijďte.</strong> Volné místo se většinou najde hned.</li>
-        <li class="reveal"><strong>Poradíme s délkou opalování</strong> podle typu vaší pleti a vybraného solária.</li>
-        <li class="reveal"><strong>Kabinka je připravená</strong> – ručník, odličovací voda, brýle. Vy si jen užijete svou chvíli.</li>
-      </ol>
-      <h3 class="reveal">Tipy na opalování</h3>
-      <div class="tips">
-        <details class="tip"><summary>Odlíčit a sundat šperky</summary><p>Make-up, parfém a některá kosmetika zvyšují citlivost pokožky. Odličovací vodu a tamponky máte připravené v kabince.</p></details>
-        <details class="tip"><summary>Brýle a čočky</summary><p>Vždy chraňte oči brýlemi, kontaktní čočky před opalováním vyjměte.</p></details>
-        <details class="tip"><summary>Krém určený do solária</summary><p>Kosmetiku na slunce s ochranným faktorem nepoužívejte – v soláriu by nefungovala. Vhodné krémy poradíme a prodáme na recepci.</p></details>
-        <details class="tip"><summary>Postupně, ne najednou</summary><p>Začněte kratší dobou a minuty přidávejte pozvolna. Opalování v soláriu a na slunci nekombinujte v jednom dni.</p></details>
-        <details class="tip"><summary>Kdy raději vynechat</summary><p>Při nachlazení, užívání některých léků (např. antibiotik) nebo v těhotenství se nejdřív poraďte s lékařem.</p></details>
-        <details class="tip"><summary>Po opalování</summary><p>Se sprchou počkejte ideálně 2–3 hodiny a pokožku hydratujte.</p></details>
-      </div>
+      <p class="eyebrow reveal">Rady</p>
+      <h2 class="reveal">Jdete poprvé?</h2>
+      <p class="reveal">Zavolejte, nebo rovnou přijďte. Délku opalování vám doporučíme podle typu pleti a kabinka bude připravená.</p>
+      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování znamená pobyt na UV záření – nikdy se nespalte. Osobám mladším 18 let opalování nedoporučujeme; v těhotenství, při užívání léků nebo kožních potížích se poraďte s lékařem.</span></p>
     </div>
-    <div>
-      <h3 class="reveal">Jaký jste typ pleti?</h3>
-      <p class="reveal">Délku opalování vždy přizpůsobujeme typu pleti. Nevíte si rady? Rádi vám poradíme na místě.</p>
-      <div class="ftypes">
-        <div class="ftype reveal"><span class="ftype-num">I</span><h4>Velmi citlivá pleť</h4><p>Světlá pleť, pihy, často rezavé vlasy. Snadno se spálí, téměř nezhnědne.</p></div>
-        <div class="ftype reveal"><span class="ftype-num">II</span><h4>Citlivá pleť</h4><p>Světlá pleť, blond vlasy. Opaluje se pomalu, snadno se spálí.</p></div>
-        <div class="ftype reveal"><span class="ftype-num">III</span><h4>Normální pleť</h4><p>Tmavě blond až hnědé vlasy. Opaluje se dobře do hněda.</p></div>
-        <div class="ftype reveal"><span class="ftype-num">IV</span><h4>Odolná pleť</h4><p>Snědá pleť, tmavé vlasy. Opaluje se rychle a opálení drží.</p></div>
-      </div>
-      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování v soláriu znamená pobyt na UV záření. Dodržujte doporučenou délku a nikdy se nespalte. Osobám mladším 18 let opalování nedoporučujeme. V těhotenství, při užívání léků nebo kožních potížích se nejdřív poraďte s lékařem.</span></p>
+    <div class="acc reveal">
+      <details class="tip"><summary>Jak u nás návštěva probíhá</summary>
+        <ol class="steps"><li><strong>Zavolejte, nebo přijďte.</strong> Volné místo se většinou najde hned.</li><li><strong>Poradíme s minutami</strong> podle pleti a vybraného solária.</li><li><strong>Kabinka je připravená</strong> – ručník, odličovací voda, brýle.</li></ol></details>
+      <details class="tip"><summary>Tipy na opalování</summary><ul class="tips"><li><strong>Odlíčit a sundat šperky.</strong> Make-up, parfém a některá kosmetika zvyšují citlivost pokožky. Odličovací vodu a tamponky máte připravené v kabince.</li><li><strong>Brýle a čočky.</strong> Vždy chraňte oči brýlemi, kontaktní čočky před opalováním vyjměte.</li><li><strong>Krém určený do solária.</strong> Kosmetiku na slunce s ochranným faktorem nepoužívejte – v soláriu by nefungovala. Vhodné krémy poradíme a prodáme na recepci.</li><li><strong>Postupně, ne najednou.</strong> Začněte kratší dobou a minuty přidávejte pozvolna. Opalování v soláriu a na slunci nekombinujte v jednom dni.</li><li><strong>Kdy raději vynechat.</strong> Při nachlazení, užívání některých léků (např. antibiotik) nebo v těhotenství se nejdřív poraďte s lékařem.</li><li><strong>Po opalování.</strong> Se sprchou počkejte ideálně 2–3 hodiny a pokožku hydratujte.</li></ul></details>
+      <details class="tip"><summary>Jaký jste typ pleti?</summary><div class="ftypes">
+        <div class="ftype"><span class="ftype-num">I</span><h4>Velmi citlivá pleť</h4><p>Světlá pleť, pihy, často rezavé vlasy. Snadno se spálí, téměř nezhnědne.</p></div>
+        <div class="ftype"><span class="ftype-num">II</span><h4>Citlivá pleť</h4><p>Světlá pleť, blond vlasy. Opaluje se pomalu, snadno se spálí.</p></div>
+        <div class="ftype"><span class="ftype-num">III</span><h4>Normální pleť</h4><p>Tmavě blond až hnědé vlasy. Opaluje se dobře do hněda.</p></div>
+        <div class="ftype"><span class="ftype-num">IV</span><h4>Odolná pleť</h4><p>Snědá pleť, tmavé vlasy. Opaluje se rychle a opálení drží.</p></div></div></details>
     </div>
   </div>
 </section>
@@ -381,23 +401,21 @@ h3{font-weight:700;letter-spacing:-.01em}
   <div class="wrap contact-in">
     <div class="reveal">
       <p class="eyebrow">Kontakt</p>
-      <h2>Těšíme se na vás</h2>
       <p class="contact-phone"><a href="tel:+420720345340">+420 720 345 340</a></p>
-      <p class="contact-addr">Dolnojirčanská 385/40<br>142 00 Praha 4 – Kamýk</p>
+      <p class="contact-addr">Dolnojirčanská 385/40, 142 00 Praha 4 – Kamýk</p>
+      <p class="small">Parkování přímo před studiem · bus Nové Dvory, asi 3 minuty pěšky. Objednávky po telefonu.</p>
       <p class="contact-links">
-        <a class="btn btn-main" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener"><img class="ico-s" src="../assets/icons/linka/provozovna-maly.svg" width="22" height="22" alt=""><span>Navigovat (Google)</span></a>
+        <a class="btn btn-main" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener"><img class="ico-s" src="../assets/icons/linka/provozovna-maly.svg" width="22" height="22" alt=""><span>Navigovat</span></a>
         <a class="btn btn-ghost" href="https://mapy.com/cs/?source=firm&id=580044" target="_blank" rel="noopener">Mapy.cz</a>
       </p>
-      <p class="small">Parkování přímo před studiem · MHD: autobusová zastávka Nové Dvory, asi 3 minuty pěšky.</p>
     </div>
     <div class="hours reveal">
       <h3><img class="ico-s" src="../assets/icons/linka/cas-maly.svg" width="32" height="32" alt=""> Otevírací doba</h3>
       <p class="open-now" data-open-now></p>
       <table>
-        <tr data-days="1,2,3,4,5"><td>Pondělí – pátek</td><td>9:00 – 21:00</td></tr>
-        <tr data-days="6,0"><td>Sobota, neděle a svátky</td><td>12:00 – 20:00</td></tr>
+        <tr data-row="work"><td>Pondělí – pátek</td><td>9:00 – 21:00</td></tr>
+        <tr data-row="free"><td>Sobota, neděle a svátky</td><td>12:00 – 20:00</td></tr>
       </table>
-      <p class="small">Objednávky přijímáme po telefonu. Dárkové poukazy a kosmetika na recepci.</p>
     </div>
   </div>
   <div class="wrap map-wrap reveal"><div class="map-box gmap gmap-click" id="gmap">
@@ -423,16 +441,21 @@ h3{font-weight:700;letter-spacing:-.01em}
 
 <script>
 (function(){
-  // Dnes otevřeno / zavřeno (svátky neřešíme – jen víkendový režim)
-  var el=document.querySelector('[data-open-now]'); if(el){
-    var d=new Date(), day=d.getDay(), h=d.getHours()+d.getMinutes()/60;
-    var wk=(day>=1&&day<=5), from=wk?9:12, to=wk?21:20;
-    var row=document.querySelector('tr[data-days*="'+day+'"]'); if(row) row.classList.add('today');
-    if(h>=from&&h<to){el.textContent='Dnes máme otevřeno do '+to+':00';el.classList.add('is-open');}
-    else if(h<from){el.textContent='Dnes otevíráme v '+from+':00';}
-    else{el.textContent='Dnes už máme zavřeno – zítra se těšíme';}
-  }
-  // Animace při posouvání
+  // Otevírací doba: Po–Pá 9–21, So, Ne a státní svátky 12–20 (svátky ČR včetně Velikonoc)
+  function easter(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da);}
+  function isHoliday(d){var md=(d.getMonth()+1)+'-'+d.getDate();
+    if(['1-1','5-1','5-8','7-5','7-6','9-28','10-28','11-17','12-24','12-25','12-26'].indexOf(md)>-1) return true;
+    var e=easter(d.getFullYear()),gf=new Date(e),em=new Date(e);gf.setDate(e.getDate()-2);em.setDate(e.getDate()+1);
+    return d.toDateString()===gf.toDateString()||d.toDateString()===em.toDateString();}
+  function sched(d){var free=d.getDay()===0||d.getDay()===6||isHoliday(d);return {free:free,from:free?12:9,to:free?20:21};}
+  var now=new Date(),s=sched(now),h=now.getHours()+now.getMinutes()/60,tm=new Date(now);tm.setDate(now.getDate()+1);var st=sched(tm);
+  var open=h>=s.from&&h<s.to;
+  var long=open?('Právě otevřeno · do '+s.to+':00'):(h<s.from?('Dnes otevíráme v '+s.from+':00'):('Zavřeno · zítra od '+st.from+':00'));
+  var short=open?('Otevřeno do '+s.to+':00'):(h<s.from?('Dnes od '+s.from+':00'):('Zítra od '+st.from+':00'));
+  document.querySelectorAll('[data-open-now]').forEach(function(el){el.textContent=long;el.classList.toggle('is-open',open);el.classList.toggle('is-closed',!open);});
+  document.querySelectorAll('[data-open-short]').forEach(function(el){el.textContent=short;});
+  var row=document.querySelector('tr[data-row="'+(s.free?'free':'work')+'"]'); if(row) row.classList.add('today');
+  // Animace při posouvání (obsah je vidět i bez nich)
   var items=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
     var vh=innerHeight; items.forEach(function(i){ if(i.getBoundingClientRect().top<vh) i.classList.add('in'); });
@@ -440,7 +463,6 @@ h3{font-weight:700;letter-spacing:-.01em}
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
     items.forEach(function(i){io.observe(i);});
   } else { items.forEach(function(i){i.classList.add('in');}); }
-  // Hlavička po odscrollování
   var hd=document.querySelector('.site-header');
   addEventListener('scroll',function(){hd.classList.toggle('scrolled',scrollY>40);},{passive:true});
 })();
