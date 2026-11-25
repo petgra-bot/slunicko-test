@@ -7,7 +7,8 @@
 <title>Návrh A – Solární studio Sluníčko</title>
 <meta name="description" content="Rodinné solární studio na Kamýku. Pět lůžek a kabin Ergoline, osobní přístup, parkování před studiem. Po–Pá 9–21, So–Ne 12–20.">
 <link rel="icon" href="../assets/icons/slunce.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Lato:wght@400;700&family=Limelight&family=Nunito:wght@800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -99,12 +100,24 @@ p{margin:0 0 1em}
 .hours tr.today td{font-weight:800}
 .open-now{font-weight:700;margin:0}
 .open-now.is-open::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:#4F7142;margin-right:8px;box-shadow:0 0 0 4px rgba(107,143,94,.25)}
+.map-wrap{margin-top:48px}
+.map-box{position:relative;overflow:hidden;border-radius:var(--map-radius,8px);min-height:380px;background:#ddd}
+.map-box iframe,.map-box .leaflet{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-static{position:relative;min-height:0}
+.map-link{display:block;position:relative}
+.map-static img{width:100%;height:auto;aspect-ratio:1100/640}
+.map-pin{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-100%);pointer-events:none}
+.map-attr{position:absolute;right:6px;bottom:4px;font-size:11px;background:rgba(255,255,255,.8);padding:1px 6px;border-radius:4px;color:#333}
+.map-attr a{color:inherit}
+.map-facade{position:absolute;inset:0;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;text-align:center;padding:20px;background:rgba(255,255,255,.55);backdrop-filter:blur(2px)}
+.map-facade p{margin:0;font-size:13px;max-width:40ch}
+.sun-marker{width:44px;height:44px}
 .site-footer{padding:36px 0 90px}
 .footer-in p{margin:0 0 6px}
 .fab-call{display:none}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+.reveal{transition:transform .7s ease,opacity .7s ease}
+.anim .reveal:not(.in){transform:translateY(22px);opacity:.35}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.anim .reveal:not(.in){opacity:1;transform:none}}
 @media (max-width:960px){
   .nav{display:none}
   .header-in{justify-content:space-between}
@@ -157,22 +170,14 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
 .site-footer{background:#222;color:#ddd}
 .fab-call{background:var(--y)}
 @media (max-width:620px){.hero-badge{position:static;margin-top:24px;justify-self:start;display:inline-grid}.hero .wrap{padding-bottom:40px}}
-</style>
+.logo-orig img{height:54px;width:auto}@media(max-width:620px){.hero .hero-badge{position:static!important;margin-top:20px;display:inline-grid}}</style>
 </head>
 <body>
 
 <div class="draft-ribbon">Návrh A · Věrná modernizace · pracovní verze <a href="../">← všechny návrhy</a></div>
 <header class="site-header" id="top">
   <div class="wrap header-in">
-    <a class="logo" href="#top" aria-label="Solární studio Sluníčko – úvod">
-  <span class="logo-sun" aria-hidden="true">
-    <svg viewBox="0 0 64 64" width="44" height="44"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
-      <circle cx="32" cy="32" r="11" fill="var(--logo-sun-fill, #FFD23F)"/>
-      <path d="M32 4c3 4-3 6 0 10M32 50c3 4-3 6 0 10M4 32c4-3 6 3 10 0M50 32c4-3 6 3 10 0M12 12c5 1 2 6 7 7M45 45c5 1 2 6 7 7M52 12c-1 5-6 2-7 7M19 45c-1 5-6 2-7 7"/>
-    </g></svg>
-  </span>
-  <span class="logo-text"><span class="logo-name">Sluníčko</span><span class="logo-strip">Solární studio</span></span>
-</a>
+    <a class="logo logo-orig" href="#top" aria-label="Solární studio Sluníčko – úvod"><img src="../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60"></a>
     <nav class="nav" aria-label="Hlavní menu">
       <a href="#studio">Studio</a><a href="#luzka">Lůžka a kabiny</a><a href="#cenik">Ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
     </nav>
@@ -193,6 +198,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
   </div>
   <a class="hero-badge" href="#recenze"><span class="hb-num">4,9</span><span class="hb-stars">★★★★★</span><span class="hb-sub">185+ hodnocení na Googlu</span></a>
 </section>
+
 
 <section class="section why" id="studio">
   <div class="wrap">
@@ -364,7 +370,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
         <a class="btn btn-main" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener"><img class="ico-s" src="../assets/icons/linka/provozovna-maly.svg" width="22" height="22" alt=""><span>Navigovat (Google)</span></a>
         <a class="btn btn-ghost" href="https://mapy.com/cs/?source=firm&id=580044" target="_blank" rel="noopener">Mapy.cz</a>
       </p>
-      <p class="small">Parkování přímo před studiem · MHD: zastávka Nové Dvory, pár minut pěšky.</p>
+      <p class="small">Parkování přímo před studiem · MHD: autobusová zastávka Nové Dvory, asi 3 minuty pěšky.</p>
     </div>
     <div class="hours reveal">
       <h3><img class="ico-s" src="../assets/icons/linka/cas-maly.svg" width="32" height="32" alt=""> Otevírací doba</h3>
@@ -376,6 +382,13 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
       <p class="small">Objednávky přijímáme po telefonu. Dárkové poukazy a kosmetika na recepci.</p>
     </div>
   </div>
+  <div class="wrap map-wrap reveal"><div class="map-box map-google" id="gmap">
+  <img src="../assets/img/mapa-osm.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.6)">
+  <div class="map-facade">
+    <button class="btn btn-main" type="button" onclick="var b=document.getElementById('gmap');b.innerHTML='&lt;iframe src=&quot;https://maps.google.com/maps?q=Sol%C3%A1rn%C3%AD%20studio%20Slun%C3%AD%C4%8Dko%2C%20Dolnojir%C4%8Dansk%C3%A1%20385%2F40%2C%20Praha&z=16&output=embed&hl=cs&quot; loading=&quot;lazy&quot; title=&quot;Mapa – Solární studio Sluníčko&quot; referrerpolicy=&quot;no-referrer-when-downgrade&quot;&gt;&lt;/iframe&gt;'">Zobrazit mapu Google</button>
+    <p>Mapa Google se načte až po kliknutí – Google při tom může ukládat cookies.</p>
+  </div>
+</div></div>
 </section>
 </main>
 
@@ -403,6 +416,8 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
   // Animace při posouvání
   var items=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var vh=innerHeight; items.forEach(function(i){ if(i.getBoundingClientRect().top<vh) i.classList.add('in'); });
+    document.documentElement.classList.add('anim');
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
     items.forEach(function(i){io.observe(i);});
   } else { items.forEach(function(i){i.classList.add('in');}); }
