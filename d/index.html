@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Návrh D – Solární studio Sluníčko</title>
-<meta name="description" content="Rodinné solární studio na Kamýku. Pět lůžek a kabin Ergoline, osobní přístup, parkování před studiem. Po–Pá 9–21, So–Ne 12–20.">
+<meta name="description" content="Rodinné solární studio na Kamýku. Pět solárií Ergoline, osobní přístup, parkování před studiem. Po–Pá 9–21, So–Ne 12–20.">
 <link rel="icon" href="../assets/icons/slunce.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Limelight&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,800;62..125,900&family=Limelight&family=Nunito:wght@800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box}
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6}
 img{max-width:100%;height:auto;display:block}
@@ -35,9 +36,11 @@ p{margin:0 0 1em}
 .logo-text{display:flex;flex-direction:column;line-height:1}
 .logo-name{font-family:'Limelight',serif;font-size:28px;text-transform:uppercase;letter-spacing:.02em}
 .logo-strip{font-family:'Nunito',sans-serif;font-weight:800;font-size:10px;letter-spacing:.32em;text-transform:uppercase;margin-top:4px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;font-size:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;transition:transform 160ms var(--ease-out),box-shadow 200ms var(--ease-out),background-color 200ms ease;cursor:pointer;font-size:16px}
 .btn img{width:22px;height:22px}
-.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-1px)}.btn:hover:active{transform:scale(.97)}}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
 .btn-call{white-space:nowrap}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:40px}
 .why-item .ico{width:56px;height:56px;margin-bottom:14px}
@@ -102,20 +105,12 @@ p{margin:0 0 1em}
 .open-now.is-open::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:#4F7142;margin-right:8px;box-shadow:0 0 0 4px rgba(107,143,94,.25)}
 .map-wrap{margin-top:48px}
 .map-box{position:relative;overflow:hidden;border-radius:var(--map-radius,8px);min-height:380px;background:#ddd}
-.map-box iframe,.map-box .leaflet{position:absolute;inset:0;width:100%;height:100%;border:0}
-.map-static{position:relative;min-height:0}
-.map-link{display:block;position:relative}
-.map-static img{width:100%;height:auto;aspect-ratio:1100/640}
-.map-pin{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-100%);pointer-events:none}
-.map-attr{position:absolute;right:6px;bottom:4px;font-size:11px;background:rgba(255,255,255,.8);padding:1px 6px;border-radius:4px;color:#333}
-.map-attr a{color:inherit}
 .map-facade{position:absolute;inset:0;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;text-align:center;padding:20px;background:rgba(255,255,255,.55);backdrop-filter:blur(2px)}
 .map-facade p{margin:0;font-size:13px;max-width:40ch}
-.sun-marker{width:44px;height:44px}
 .site-footer{padding:36px 0 90px}
 .footer-in p{margin:0 0 6px}
 .fab-call{display:none}
-.reveal{transition:transform .7s ease,opacity .7s ease}
+.reveal{transition:transform .7s var(--ease-out),opacity .7s var(--ease-out)}
 .anim .reveal:not(.in){transform:translateY(22px);opacity:.35}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.anim .reveal:not(.in){opacity:1;transform:none}}
 @media (max-width:960px){
@@ -185,7 +180,25 @@ h2{font-size:clamp(34px,5.5vw,64px)}
 .fab-call{background:var(--sun)}
 .anim .reveal:not(.in){transform:translateY(40px)}
 @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
-.map-leaflet{height:440px}.map-leaflet .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9)}.lf-pin{background:none;border:0}</style>
+
+:root{--font-head:'Archivo',system-ui,sans-serif;--font-body:'Archivo',system-ui,sans-serif;--map-radius:6px}
+h1,h2{font-stretch:112%;font-weight:900;letter-spacing:-.025em;text-transform:uppercase}
+.hero h1{font-stretch:125%;line-height:.9}
+h3{font-stretch:100%}
+.stat b,.rating-num,.device-price strong{font-stretch:125%}
+.device:hover{transform:none}
+@media (hover:hover) and (pointer:fine){.device{transition:transform 300ms var(--ease-out)}.device:hover{transform:translateY(-4px)}}
+.contact{position:relative;overflow:hidden}
+.contact .map-wrap{margin-top:40px}
+.map-dark iframe{filter:invert(.92) hue-rotate(180deg) saturate(.6) contrast(.92)}
+.map-dark{min-height:440px;border:1px solid rgba(255,255,255,.15)}
+
+.map-box{position:relative;overflow:hidden;border-radius:var(--map-radius,8px);background:#e9e5dc;min-height:380px}
+.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.gmap-click{background:repeating-linear-gradient(135deg,#fff7d6 0 14px,#fff1b8 14px 28px)}
+.map-facade{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
+.map-facade p{margin:0;max-width:42ch}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}</style>
 </head>
 <body>
 
@@ -202,7 +215,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
   <span class="logo-text"><span class="logo-name">Sluníčko</span><span class="logo-strip">Solární studio</span></span>
 </a>
     <nav class="nav" aria-label="Hlavní menu">
-      <a href="#studio">Studio</a><a href="#luzka">Lůžka a kabiny</a><a href="#cenik">Ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
+      <a href="#studio">Studio</a><a href="#luzka">Solária</a><a href="#cenik">Ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
     </nav>
     <a class="btn btn-call" href="tel:+420720345340"><img class="ico-s" src="../assets/icons/linka/telefon-maly.svg" width="22" height="22" alt=""><span>+420 720 345 340</span></a>
   </div>
@@ -214,7 +227,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
     <p class="eyebrow" style="color:var(--sun)">Solární studio Sluníčko · Praha 4 – Kamýk</p>
     <h1>Čas<br><em>zazářit.</em></h1>
     <div class="hero-row">
-      <p>Pět lůžek a kabin Ergoline, parkování přímo před dveřmi a lidé, ke kterým se rádi vracíte.</p>
+      <p>Pět solárií Ergoline, parkování přímo před dveřmi a lidé, ke kterým se rádi vracíte.</p>
       <div class="hero-cta">
         <a class="btn btn-main" href="tel:+420720345340">Zavolat +420 720 345 340</a>
         <a class="btn btn-ghost" href="#cenik">Ceník a permanentky</a>
@@ -223,7 +236,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
     <div class="stats">
       <div class="stat reveal"><b data-count="4.9" data-dec="1">4,9</b><span>hodnocení na Googlu</span></div>
       <div class="stat reveal"><b data-count="185" data-suffix="+">185+</b><span>recenzí od klientů</span></div>
-      <div class="stat reveal"><b data-count="5">5</b><span>lůžek a kabin Ergoline</span></div>
+      <div class="stat reveal"><b data-count="5">5</b><span>solárií Ergoline</span></div>
       <div class="stat reveal"><b data-count="40" data-suffix=" %">40 %</b><span>bonus na permanentce</span></div>
     </div>
   </div>
@@ -239,7 +252,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
     <div class="why-grid">
       <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/pece.svg" width="48" height="48" alt=""><h3>Osobní přístup</h3><p>Poradíme s délkou opalování podle typu pleti. Žádný spěch, žádný tlak.</p></div>
       <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/rucnik.svg" width="48" height="48" alt=""><h3>Vše připraveno</h3><p>V kabince čeká ručník, odličovací voda, tamponky, čelenka i gumička do vlasů.</p></div>
-      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/slunce.svg" width="48" height="48" alt=""><h3>Technika Ergoline</h3><p>Pět udržovaných lůžek a kabin od předního výrobce, na výběr podle chuti.</p></div>
+      <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/slunce.svg" width="48" height="48" alt=""><h3>Technika Ergoline</h3><p>Pět udržovaných solárií od předního výrobce – vleže i vestoje.</p></div>
       <div class="why-item reveal"><img class="ico" src="../assets/icons/linka/provozovna.svg" width="48" height="48" alt=""><h3>Parkování u dveří</h3><p>Zaparkujete přímo před studiem. Na recepci si můžete dát i kávu.</p></div>
     </div>
   </div>
@@ -247,13 +260,13 @@ h2{font-size:clamp(34px,5.5vw,64px)}
 
 <section class="section devices" id="luzka">
   <div class="wrap">
-    <p class="eyebrow reveal">Naše lůžka a kabiny</p>
-    <h2 class="reveal">Vyberte si, jak se chcete opalovat</h2>
+    <p class="eyebrow reveal">Naše solária</p>
+    <h2 class="reveal">Vleže, nebo vestoje – vyberte si</h2>
     <div class="device-grid">
       <article class="device reveal">
         <div class="device-img"><img src="../assets/img/ergoline-1600.jpg" alt="Ergoline 1600 Hybrid Performance LED" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
-          <p class="device-type">2× solární lůžko</p>
+          <p class="device-type">2× horizontální solárium (vleže)</p>
           <h3>Ergoline 1600 Hybrid Performance LED</h3>
           <ul><li>Kombinace UV a kolagenového světla</li><li>Intenzivní a rovnoměrné opálení</li><li>Klimatizace Climatronic, osvěžení Aqua Fresh</li><li>Aroma a vlastní hudba</li></ul>
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
@@ -262,7 +275,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <article class="device reveal">
         <div class="device-img"><img src="../assets/img/ergoline-pure.jpg" alt="Ergoline Pure" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
-          <p class="device-type">solární lůžko</p>
+          <p class="device-type">horizontální solárium (vleže)</p>
           <h3>Ergoline Pure</h3>
           <ul><li>48 UV trubic, UVA LED a UVB lampy</li><li>Dotykový displej 7″</li><li>Lehátko Multi Relax, klimatizace Air Condition Plus</li><li>Zvuk Cinematic a Bluetooth</li></ul>
           <p class="device-price"><strong>18 Kč</strong> / minuta</p>
@@ -271,7 +284,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <article class="device reveal">
         <div class="device-img"><img src="../assets/img/ergoline-980.jpg" alt="Ergoline 980" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
-          <p class="device-type">solární kabina (ve stoje)</p>
+          <p class="device-type">vertikální solárium (vestoje)</p>
           <h3>Ergoline 980</h3>
           <ul><li>51 prodloužených UV trubic 200 W</li><li>Osvěžení Aqua Fresh</li><li>Aroma</li><li>3D zvuk</li></ul>
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
@@ -280,7 +293,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <article class="device reveal">
         <div class="device-img"><img src="../assets/img/tower-800.jpg" alt="Tower 800" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
-          <p class="device-type">solární kabina (ve stoje)</p>
+          <p class="device-type">vertikální solárium (vestoje)</p>
           <h3>Tower 800</h3>
           <ul><li>Rychlé opalování ve stoje</li><li>Ideální na krátkou návštěvu</li></ul>
           <p class="device-price"><strong>18 Kč</strong> / minuta</p>
@@ -303,7 +316,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <p class="reveal"><a class="link-arrow" href="../assets/cenik_2025.pdf" target="_blank" rel="noopener">Ceník ke stažení (PDF)</a></p>
     </div>
     <div class="perm reveal">
-      <h3>Permanentky s bonusem</h3>
+      <h3>Permanentky s bonusem až 40 %</h3>
       <p>Čím víc nabijete, tím víc minut dostanete navíc.</p>
       <table>
         <thead><tr><th>Zaplatíte</th><th>Dostanete navíc</th><th>Celkem k opalování</th></tr></thead>
@@ -363,7 +376,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <h2 class="reveal">Jak to u nás probíhá</h2>
       <ol class="steps">
         <li class="reveal"><strong>Zavolejte, nebo rovnou přijďte.</strong> Volné místo se většinou najde hned.</li>
-        <li class="reveal"><strong>Poradíme s délkou opalování</strong> podle typu vaší pleti a vybraného lůžka.</li>
+        <li class="reveal"><strong>Poradíme s délkou opalování</strong> podle typu vaší pleti a vybraného solária.</li>
         <li class="reveal"><strong>Kabinka je připravená</strong> – ručník, odličovací voda, brýle. Vy si jen užijete svou chvíli.</li>
       </ol>
       <h3 class="reveal">Tipy na opalování</h3>
@@ -385,7 +398,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
         <div class="ftype reveal"><span class="ftype-num">III</span><h4>Normální pleť</h4><p>Tmavě blond až hnědé vlasy. Opaluje se dobře do hněda.</p></div>
         <div class="ftype reveal"><span class="ftype-num">IV</span><h4>Odolná pleť</h4><p>Snědá pleť, tmavé vlasy. Opaluje se rychle a opálení drží.</p></div>
       </div>
-      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování v soláriu znamená pobyt na UV záření. Dodržujte doporučenou délku a nikdy se nespalte. Opalovat se mohou osoby starší 18 let; v těhotenství, při užívání léků nebo kožních potížích se nejdřív poraďte s lékařem.</span></p>
+      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování v soláriu znamená pobyt na UV záření. Dodržujte doporučenou délku a nikdy se nespalte. Osobám mladším 18 let opalování nedoporučujeme. V těhotenství, při užívání léků nebo kožních potížích se nejdřív poraďte s lékařem.</span></p>
     </div>
   </div>
 </section>
@@ -413,15 +426,7 @@ h2{font-size:clamp(34px,5.5vw,64px)}
       <p class="small">Objednávky přijímáme po telefonu. Dárkové poukazy a kosmetika na recepci.</p>
     </div>
   </div>
-  <div class="wrap map-wrap reveal"><div class="map-box map-leaflet "><div id="lmap" class="leaflet" role="region" aria-label="Interaktivní mapa"></div></div>
-<script>
-addEventListener('load',function(){ if(!window.L) return;
-  var m=L.map('lmap',{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false}).setView([50.0158784,14.4497583],16);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(m);
-  var ic=L.divIcon({className:'lf-pin',html:"<svg width=\"44\" height=\"56\" viewBox=\"0 0 44 56\" aria-hidden=\"true\"><path d=\"M22 54C22 54 3 33 3 21a19 19 0 0 1 38 0c0 12-19 33-19 33z\" fill=\"#FFD23F\" stroke=\"#1C1A1B\" stroke-width=\"3\"/><circle cx=\"22\" cy=\"21\" r=\"7\" fill=\"#fff\" stroke=\"#1C1A1B\" stroke-width=\"3\"/></svg>",iconSize:[44,56],iconAnchor:[22,54],popupAnchor:[0,-50]});
-  L.marker([50.0158784,14.4497583],{icon:ic}).addTo(m).bindPopup('<strong>Solární studio Sluníčko</strong><br>Dolnojirčanská 385/40<br><a href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener">Navigovat</a>');
-});
-</script></div>
+  <div class="wrap map-wrap reveal"><div class="map-box gmap map-dark"><iframe src="https://maps.google.com/maps?q=Sol%C3%A1rn%C3%AD%20studio%20Slun%C3%AD%C4%8Dko%2C%20Dolnojir%C4%8Dansk%C3%A1%20385%2F40%2C%20Praha&z=16&output=embed&hl=cs" loading="lazy" title="Mapa – Solární studio Sluníčko" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>
 </section>
 </main>
 
@@ -470,6 +475,28 @@ addEventListener('load',function(){ if(!window.L) return;
     els.forEach(function(e){io.observe(e);});
   }
 })();
+</script>
+<script>document.querySelectorAll('.hero h1, .section h2').forEach(function(h){h.setAttribute('data-split','')});</script><script>
+addEventListener('DOMContentLoaded',function(){
+  if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function split(el){ // nadpis zůstane čitelný pro čtečky (aria-label), slova jsou jen dekorace
+    el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());
+    (function walk(n){[].slice.call(n.childNodes).forEach(function(c){
+      if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){
+        if(!t) return; if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return;}
+        var w=document.createElement('span');w.className='w';w.setAttribute('aria-hidden','true');var i=document.createElement('span');i.textContent=t;w.appendChild(i);f.appendChild(w);});
+        n.replaceChild(f,c);}
+      else if(c.nodeType===1&&c.tagName!=='BR'&&c.tagName!=='A') walk(c);});})(el);
+    return el.querySelectorAll('.w>span');
+  }
+  document.querySelectorAll('[data-split]').forEach(function(h,idx){
+    var words=split(h);
+    if(idx===0){ gsap.from(words,{yPercent:110,duration:.9,ease:'expo.out',stagger:.06,delay:.1});
+      gsap.from('.hero [data-intro]',{y:14,opacity:0,duration:.7,ease:'power3.out',stagger:.08,delay:.45}); }
+    else if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger);
+      gsap.from(words,{yPercent:110,duration:.8,ease:'expo.out',stagger:.05,scrollTrigger:{trigger:h,start:'top 85%',once:true}}); }
+  });
+});
 </script>
 </body>
 </html>
