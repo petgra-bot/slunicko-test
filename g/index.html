@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Návrh A2 – Solární studio Sluníčko</title>
+<title>Návrh G – Solární studio Sluníčko</title>
 <meta name="description" content="Rodinné solární studio na Kamýku. Pět solárií Ergoline, osobní přístup, parkování před studiem. Po–Pá 9–21, So–Ne 12–20.">
 <link rel="icon" href="../assets/icons/slunce.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600;700&family=Limelight&family=Nunito:wght@800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script><script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script><script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)}
@@ -156,9 +156,9 @@ p{margin:0 0 1em}
   .ob-where{display:none}
 }
 @media (max-width:760px){
-  .device-grid,.review-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-left:-20px;margin-right:-20px;padding:0 20px 8px;scrollbar-width:none}
-  .device-grid::-webkit-scrollbar,.review-grid::-webkit-scrollbar{display:none}
-  .device,.review{flex:0 0 78%;scroll-snap-align:start}
+  .review-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;gap:12px;margin-left:-20px;margin-right:-20px;padding:0 20px 8px;scroll-padding:0 20px;scrollbar-width:none}
+  .review-grid::-webkit-scrollbar{display:none}
+  .review{flex:0 0 calc(100% - 56px);scroll-snap-align:start;scroll-snap-stop:always}
   .ob-hours{display:none}
 }
 @media (max-width:960px){
@@ -179,68 +179,166 @@ p{margin:0 0 1em}
   .logo-name{font-size:23px}
 }
 
-:root{--bg:#fff;--ink:#23211f;--line:#ece4d2;--font-head:'Oswald',sans-serif;--font-body:'Lato',sans-serif;--y:#FFC20E;--blue:#34449A;--red:#E2491B;--map-radius:6px}
-h1,h2,h3{text-transform:uppercase;font-weight:600}
-.site-header{background:#fff;box-shadow:0 1px 0 var(--line)}
-.logo-orig img{height:70px;width:auto}@media(max-width:620px){.logo-orig img{height:52px}}
-.btn-main,.btn-call{background:var(--y);color:#222}
+/* Směr: „cedule z černého železa nad Kamýkem“ – vysoké nápisové písmo, velké fotky studia, žlutá jako světlo.
+   Pohyb: úvod nadpisu po slovech, odkrývání fotek, na počítači vodorovný průjezd solárii. Plynulé posouvání: Lenis. */
+:root{--bg:#fff;--ink:#1C1A1B;--muted:#5d5759;--line:rgba(28,26,27,.14);--sun:#FFD23F;--flam:#F7A8BA;--butter:#FFF6CF;
+--font-head:'Big Shoulders Display',Impact,sans-serif;--font-body:'Instrument Sans',system-ui,sans-serif;--star:#1C1A1B;--map-radius:4px}
+body{font-size:17px}
+h1,h2,h3{text-transform:uppercase;font-weight:800;letter-spacing:.005em;line-height:.95}
+h2{font-size:clamp(44px,6.4vw,92px)}
+h3{font-size:30px}
+.site-header{background:#fff;border-bottom:1px solid var(--line)}
+.logo{color:var(--ink)}
+.btn{border-radius:2px;text-transform:uppercase;letter-spacing:.06em;font-size:14px;padding:14px 22px}
+.btn-main,.btn-call{background:var(--ink);color:#fff}
+.btn-main img,.btn-call img,.fab-call img{filter:invert(1)}
 .btn-ghost{border-color:var(--ink)}
-.eyebrow{color:var(--blue)}
-.hero{padding:48px 0 72px;background:#fff}
-.hero-in{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;position:relative;z-index:0}
-.hero h1{font-size:clamp(38px,5.4vw,66px);line-height:1.02}
-.hero h1 span{color:var(--red)}
-.hero p.lead{font-size:19px}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-.collage{position:relative;display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:16/11}
-.collage::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--y);border-radius:6px;z-index:-1}
-.collage img{width:100%;height:100%;object-fit:cover;border-radius:6px;box-shadow:0 10px 28px rgba(0,0,0,.18)}
-.collage img:first-child{grid-row:span 2}
-.hero-badge{display:inline-flex;gap:8px;align-items:baseline;margin-top:18px;text-decoration:none;font-weight:700}
-.hb-num{font:600 26px 'Oswald'}.hb-stars{color:#E8A400}
-.where{background:#FFF4CC;color:var(--ink);padding:0;border-top:1px solid #f1e3a6;border-bottom:1px solid #f1e3a6}
-.where-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:stretch}
-.where-text{padding:40px 40px 40px 0}
-.where-text h2{font-size:clamp(26px,3vw,34px)}
-.where-text p{margin:0 0 10px}
-.where-text .open-now{font-weight:700}
-.where .map-box{border-radius:0;min-height:340px}
-.why{padding-top:72px}
-.why-item{border-top:3px solid var(--y);padding-top:18px}
-.devices{background:#FFF8E1}
-.device{background:#fff;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
-.device-price strong{color:var(--red)}
-.perm{background:var(--y);border-radius:6px}
-.reviews{background:#fff;--star:#E8A400}
-.review{background:#FFF8E1;border-radius:6px;position:relative}
-.review::before{content:"“";position:absolute;right:16px;top:-6px;font:600 80px/1 'Oswald';color:var(--y)}
-.advice{background:#fff}
-.ftype{background:#FFF8E1;border-radius:6px}
-.uv-note{background:#F4F5FB;border-radius:6px}
-.contact{background:var(--y)}
-.hours{background:#fff;border-radius:6px}
-.site-footer{background:#23211f;color:#ddd}
-.fab-call{background:var(--y)}
-@media (max-width:960px){.hero-in{grid-template-columns:1fr}.collage::before{inset:16px -10px -16px 16px}
-.where-in{grid-template-columns:1fr}.where-text{padding:32px 0}.where .map-box{margin:0 -20px}}
+.eyebrow{font-family:var(--font-body);font-weight:600;letter-spacing:.18em;color:var(--muted)}
+iconify-icon{font-size:22px;vertical-align:-4px}
+.hero{padding:28px 0 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px;align-items:end}
+.hero h1{font-size:clamp(64px,11vw,176px);line-height:.9;margin:.12em 0 0}
+.hero h1 em{font-style:normal;background:var(--sun);padding:0 .08em}
+.hero-lead{font-size:20px;max-width:34ch;margin:24px 0}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-img{position:relative;overflow:hidden;aspect-ratio:4/5;max-height:620px;border-radius:2px}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.3fr);margin-top:40px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.hero-bar>*{padding:18px 20px;border-right:1px solid var(--line);min-width:0}
+.hero-bar>*:last-child{border-right:0;padding:0}
+.hero-bar b{display:block;font:800 30px/1 var(--font-head);text-transform:uppercase}
+.hero-bar span{font-size:14px;color:var(--muted)}
+.hero-bar .map-box{min-height:150px;height:100%;border-radius:0}
+.hero-badge{display:none}
+.why-item{border-top:2px solid var(--ink);padding-top:18px}
+.devices{background:var(--ink);color:#fff;overflow:hidden}
+.devices .eyebrow{color:#bdb6b8}
+.device-grid{display:flex;gap:24px;grid-template-columns:none;width:max-content;padding-right:20px}
+.device{width:min(420px,78vw);background:#2a2728;border-radius:2px;flex:none}
+.device-img{overflow:hidden}
+.device-type{color:var(--sun);opacity:1}
+.device-price strong{font:800 52px/1 var(--font-head);color:var(--sun)}
+.prices{background:var(--sun)}
+.price-list li{border-color:rgba(28,26,27,.25)}
+.perm{background:#fff;border-radius:2px}
+.reviews{background:#fff}
+.rating-num{font-family:var(--font-head);font-size:120px}
+.review{border-top:2px solid var(--ink);padding:20px 0 0}
+.review blockquote{font-size:19px}
+.advice{background:var(--butter)}
+.ftype{background:#fff}
+.uv-note{background:#fff}
+.contact{background:#fff}
+.hours{background:var(--butter);border-radius:2px}
+.contact .map-box{min-height:460px}
+.site-footer{background:var(--ink);color:#d8d3d4}
+.fab-call{background:var(--ink)}
+.clip{clip-path:inset(0 0 0 0)}
+@media (max-width:1023px){.device-grid{width:auto}.device{width:auto}}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-img{aspect-ratio:16/11}.hero-bar{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hero-bar>*:last-child{grid-column:1/-1;border-top:1px solid var(--line)}.hero-bar .map-box{min-height:220px}}
+@media (max-width:560px){.hero-bar{grid-template-columns:1fr}.hero-bar>*{border-right:0;border-bottom:1px solid var(--line)}}
 
 .map-box{position:relative;overflow:hidden;border-radius:var(--map-radius,8px);background:#e9e5dc;min-height:380px}
 .map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .gmap-click{background:repeating-linear-gradient(135deg,#fff7d6 0 14px,#fff1b8 14px 28px)}
 .map-facade{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:24px}
 .map-facade p{margin:0;max-width:42ch}
-.fb-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:#34449A;margin-left:auto;transition:background-color 200ms ease,transform 160ms var(--ease-out)}.fb-link:active{transform:scale(.94)}@media (hover:hover){.fb-link:hover{background:rgba(52,68,154,.1)}}.nav+.fb-link{margin-left:8px}</style>
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}
+/* --- solária: společné --- */
+.device{overflow:hidden;display:flex;flex-direction:column}
+/* 1 karusel */
+.dev-carousel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:28px}
+.car-nav{display:none}
+@media (max-width:760px){
+  .dev-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    gap:12px;margin:24px -20px 0;padding:4px 20px 6px;scroll-padding:0 20px;scrollbar-width:none}
+  .dev-carousel::-webkit-scrollbar{display:none}
+  .dev-carousel>.device{flex:0 0 calc(100% - 40px);scroll-snap-align:start;scroll-snap-stop:always}
+  .car-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px}
+  .dots{display:flex;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:currentColor;opacity:.25;transition:opacity 200ms ease,transform 200ms var(--ease-out)}
+  .dot.on{opacity:1;transform:scale(1.25)}
+  .car-btn{width:40px;height:40px;border-radius:50%;border:1px solid currentColor;background:transparent;font-size:22px;line-height:1;color:inherit;transition:transform 160ms var(--ease-out)}
+  .car-btn:active{transform:scale(.94)}
+}
+/* 2 záložky */
+.dev-tabs{margin-top:28px}
+.tab-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tab{font:inherit;font-weight:700;border:2px solid var(--ink);background:transparent;color:inherit;border-radius:999px;padding:10px 16px;cursor:pointer;display:flex;gap:8px;align-items:baseline;transition:background-color 200ms ease,color 200ms ease,transform 160ms var(--ease-out)}
+.tab span{font-weight:400;font-size:13px;opacity:.75}
+.tab:active{transform:scale(.97)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff}
+.tab-panel{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center}
+.tab-panel:not([hidden]){animation:tabin 300ms var(--ease-out)}
+@keyframes tabin{from{opacity:0;transform:translateY(6px)}}
+.tp-img img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px}
+@media (max-width:760px){.tab-panel{grid-template-columns:1fr;gap:14px}.tab{padding:8px 12px;font-size:15px}}
+/* 3 seznam */
+.dev-rows{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:10px}
+.dev-row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:18px;align-items:center;padding:10px;border-radius:10px;background:var(--row-bg,#fff)}
+.dr-img{width:120px;height:84px;object-fit:cover;border-radius:8px}
+.dr-text h3{margin:0 0 2px;font-size:20px}
+.dr-text p{margin:0;font-size:15px;opacity:.8}
+.dr-price{margin:0;text-align:right;line-height:1.1}
+.dr-price strong{display:block;font-size:28px}
+.dr-price span{font-size:13px;opacity:.7}
+@media (max-width:560px){.dev-row{grid-template-columns:76px minmax(0,1fr) auto;gap:12px}.dr-img{width:76px;height:64px}.dr-text h3{font-size:17px}.dr-text p{font-size:13px}.dr-price strong{font-size:22px}}
+/* 4 tabulka */
+.dev-table-wrap{margin-top:24px;overflow-x:auto}
+.dev-table{width:100%;border-collapse:collapse}
+.dev-table th,.dev-table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.dev-table thead th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
+.dev-table tbody th{display:flex;align-items:center;gap:14px;font-weight:800}
+.dt-thumb img{width:84px;height:58px;object-fit:cover;border-radius:4px}
+.dt-price{white-space:nowrap}.dt-price strong{font-size:24px}
+@media (max-width:700px){.dev-table thead{display:none}.dev-table,.dev-table tbody,.dev-table tr,.dev-table td,.dev-table th{display:block}
+  .dev-table tr{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .dev-table tbody th{grid-column:1/-1;border:0;padding:0}.dev-table td{border:0;padding:0;font-size:15px}
+  .dev-table td::before{content:attr(data-l) ": ";opacity:.6}.dev-table td.dt-price::before{content:""}}
+/* 5 dlaždice */
+.dev-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:24px}
+.tile{overflow:hidden;border-radius:var(--tile-r,14px);background:var(--tile-bg,#fff)}
+.tile img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.tile-body{padding:12px 14px 14px}
+.tile h3{font-size:17px;margin:0 0 4px}
+.tile-price{margin:0}.tile-price strong{font-size:22px}
+@media (max-width:760px){.dev-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile h3{font-size:15px}.tile .device-type{font-size:10px}}
+/* 6 rozklikávací */
+.dev-accs{margin-top:24px;border-top:1px solid var(--line)}
+.dev-acc{border-bottom:1px solid var(--line)}
+.dev-acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:16px;align-items:baseline;padding:18px 0}
+.dev-acc summary::-webkit-details-marker{display:none}
+.da-name{font-family:var(--font-head);font-weight:900;font-size:clamp(20px,2.6vw,30px);text-transform:uppercase}
+.da-type{font-size:14px;opacity:.7}
+.da-price{font-weight:800;white-space:nowrap}
+.da-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;padding:0 0 20px}
+.da-body img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:6px}
+@media (max-width:700px){.dev-acc summary{grid-template-columns:minmax(0,1fr) auto}.da-type{display:none}.da-body{grid-template-columns:1fr}}
+/* 7 skládané karty (mobil) */
+@media (max-width:1023px){.dev-stack{display:block;margin-top:24px}
+  .dev-stack .device{position:sticky;top:96px;margin-bottom:18px;box-shadow:0 -8px 24px rgba(0,0,0,.18)}
+  .dev-stack .device-img img{aspect-ratio:16/9}}
+.openbar{display:none}</style>
 </head>
 <body>
 
-<div class="draft-ribbon">Návrh A2 · Fotky studia (z A) · pracovní verze <a href="../">← všechny návrhy</a></div>
+<div class="draft-ribbon">Návrh G · Cedule – plynulý pohyb · pracovní verze <a href="../">← všechny návrhy</a></div>
 <header class="site-header" id="top">
   <div class="wrap header-in">
-    <a class="logo logo-orig" href="#top" aria-label="Solární studio Sluníčko – úvod"><img src="../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60"></a>
+    <a class="logo" href="#top" aria-label="Solární studio Sluníčko – úvod">
+  <span class="logo-sun" aria-hidden="true">
+    <svg viewBox="0 0 64 64" width="44" height="44"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
+      <circle cx="32" cy="32" r="11" fill="var(--logo-sun-fill, #FFD23F)"/>
+      <path d="M32 4c3 4-3 6 0 10M32 50c3 4-3 6 0 10M4 32c4-3 6 3 10 0M50 32c4-3 6 3 10 0M12 12c5 1 2 6 7 7M45 45c5 1 2 6 7 7M52 12c-1 5-6 2-7 7M19 45c-1 5-6 2-7 7"/>
+    </g></svg>
+  </span>
+  <span class="logo-text"><span class="logo-name">Sluníčko</span><span class="logo-strip">Solární studio</span></span>
+</a>
     <nav class="nav" aria-label="Hlavní menu">
       <a href="#luzka">Solária a ceník</a><a href="#recenze">Recenze</a><a href="#rady">Rady</a><a href="#kontakt">Kontakt</a>
     </nav>
-    <a class="fb-link" href="https://www.facebook.com/studioslunicko" target="_blank" rel="noopener" aria-label="Studio Sluníčko na Facebooku"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg></a><a class="btn btn-call" href="tel:+420720345340"><img class="ico-s" src="../assets/icons/linka/telefon-maly.svg" width="22" height="22" alt=""><span>+420 720 345 340</span></a>
+    <a class="btn btn-call" href="tel:+420720345340"><img class="ico-s" src="../assets/icons/linka/telefon-maly.svg" width="22" height="22" alt=""><span>+420 720 345 340</span></a>
   </div>
   <div class="openbar">
     <div class="wrap openbar-in">
@@ -253,37 +351,28 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
 
 <main>
 <section class="hero">
-  <div class="wrap hero-in">
-    <div>
-      <p class="eyebrow">Praha 4 – Kamýk</p>
-      <h1>Rodinné solární studio <span>na Kamýku</span></h1>
-      <p class="lead">Pět solárií Ergoline, čisto, káva na recepci a parkování přímo před dveřmi.</p>
-      <div class="hero-cta">
-        <a class="btn btn-main" href="tel:+420720345340">Zavolat +420 720 345 340</a>
-        <a class="btn btn-ghost" href="#cenik">Ceník a permanentky</a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" data-intro>Solární studio Sluníčko · Kamýk</p>
+        <h1 data-split>Váš čas. <em>Vaše pravidla.</em></h1>
+        <p class="hero-lead" data-intro>Pět solárií Ergoline, čisté kabinky s ručníkem a odličovací vodou a lidé, kteří vás znají jménem.</p>
+        <div class="hero-cta" data-intro>
+          <a class="btn btn-main" href="tel:+420720345340"><iconify-icon icon="solar:phone-calling-bold" aria-hidden="true"></iconify-icon> Rezervovat · 720 345 340</a>
+          <a class="btn btn-ghost" href="#cenik">Ceník</a>
+        </div>
       </div>
-      <a class="hero-badge" href="#recenze"><span class="hb-num">4,9</span><span class="hb-stars">★★★★★</span><span>185+ hodnocení na Googlu</span></a>
+      <div class="hero-img" data-reveal-img><img src="../assets/img/recepce.jpg" alt="Recepce Solárního studia Sluníčko" width="800" height="533"></div>
     </div>
-    <div class="collage">
-      <img src="../assets/img/recepce.jpg" alt="Recepce studia" width="800" height="533">
-      <img src="../assets/img/ergoline-1600.jpg" alt="Horizontální solárium Ergoline 1600" width="800" height="533">
-      <img src="../assets/img/ergoline-980.jpg" alt="Vertikální solárium Ergoline 980" width="800" height="533">
+    <div class="hero-bar" data-intro>
+      <div><b data-open-short>Otevřeno</b><span>Po–Pá 9–21 · So–Ne 12–20</span></div>
+      <div><b>4,9 ★</b><span>185+ hodnocení na Googlu</span></div>
+      <div><b>Od 18 Kč</b><span>za minutu · bonus až 40 %</span></div>
+      <div class="map-box gmap "><iframe src="https://maps.google.com/maps?q=Sol%C3%A1rn%C3%AD%20studio%20Slun%C3%AD%C4%8Dko%2C%20Dolnojir%C4%8Dansk%C3%A1%20385%2F40%2C%20Praha&z=16&output=embed&hl=cs" loading="lazy" title="Mapa – Solární studio Sluníčko" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
     </div>
   </div>
 </section>
-<section class="where" aria-label="Kde nás najdete">
-  <div class="wrap where-in">
-    <div class="where-text">
-      <p class="eyebrow" style="color:#E2491B">Kde nás najdete</p>
-      <h2>Dolnojirčanská 385/40, Kamýk</h2>
-      <p class="open-now" data-open-now></p>
-      <p>Po–Pá 9–21 · So, Ne a svátky 12–20</p>
-      <p>Parkování přímo před studiem · bus Nové Dvory, 3 minuty pěšky</p>
-      <p><a class="btn btn-main" href="https://maps.google.com/?cid=14463567162198167039" target="_blank" rel="noopener">Navigovat</a></p>
-    </div>
-    <div class="map-box gmap "><iframe src="https://maps.google.com/maps?q=Sol%C3%A1rn%C3%AD%20studio%20Slun%C3%AD%C4%8Dko%2C%20Dolnojir%C4%8Dansk%C3%A1%20385%2F40%2C%20Praha&z=16&output=embed&hl=cs" loading="lazy" title="Mapa – Solární studio Sluníčko" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
-  </div>
-</section>
+
 
 <section class="perks" id="studio" aria-label="Proč k nám">
   <div class="wrap perks-in">
@@ -294,6 +383,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
   </div>
 </section>
 
+
 <section class="section devices" id="luzka">
   <div class="wrap">
     <div class="sec-head">
@@ -301,9 +391,9 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
       <h2 class="reveal">Vleže, nebo vestoje – vyberte si</h2></div>
       <a class="link-arrow reveal" href="../assets/cenik_2025.pdf" target="_blank" rel="noopener">Ceník v PDF</a>
     </div>
-    <div class="device-grid">
-      <article class="device reveal">
-        <div class="device-img"><img src="../assets/img/ergoline-1600.jpg" alt="Ergoline 1600 Hybrid Performance LED" loading="lazy" width="800" height="533"></div>
+    <div class="device-grid dev-stack">
+      <article class="device">
+        <div class="device-img"><img class="" src="../assets/img/ergoline-1600.jpg" alt="Ergoline 1600 Hybrid Performance LED" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
           <p class="device-type">2× horizontální solárium (vleže)</p>
           <h3>Ergoline 1600 Hybrid Performance LED</h3>
@@ -311,8 +401,8 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
         </div>
       </article>
-      <article class="device reveal">
-        <div class="device-img"><img src="../assets/img/ergoline-pure.jpg" alt="Ergoline Pure" loading="lazy" width="800" height="533"></div>
+      <article class="device">
+        <div class="device-img"><img class="" src="../assets/img/ergoline-pure.jpg" alt="Ergoline Pure" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
           <p class="device-type">horizontální solárium (vleže)</p>
           <h3>Ergoline Pure</h3>
@@ -320,8 +410,8 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
           <p class="device-price"><strong>18 Kč</strong> / minuta</p>
         </div>
       </article>
-      <article class="device reveal">
-        <div class="device-img"><img src="../assets/img/ergoline-980.jpg" alt="Ergoline 980" loading="lazy" width="800" height="533"></div>
+      <article class="device">
+        <div class="device-img"><img class="" src="../assets/img/ergoline-980.jpg" alt="Ergoline 980" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
           <p class="device-type">vertikální solárium (vestoje)</p>
           <h3>Ergoline 980</h3>
@@ -329,8 +419,8 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
           <p class="device-price"><strong>24 Kč</strong> / minuta</p>
         </div>
       </article>
-      <article class="device reveal">
-        <div class="device-img"><img src="../assets/img/tower-800.jpg" alt="Tower 800" loading="lazy" width="800" height="533"></div>
+      <article class="device">
+        <div class="device-img"><img class="" src="../assets/img/tower-800.jpg" alt="Tower 800" loading="lazy" width="800" height="533"></div>
         <div class="device-body">
           <p class="device-type">vertikální solárium (vestoje)</p>
           <h3>Tower 800</h3>
@@ -369,17 +459,17 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
       </p>
     </div>
     <div class="review-grid">
-        <figure class="review reveal">
+        <figure class="review">
           <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
           <blockquote>„Paní majitelka je úžasná a milá paní, solária nádherně opalují, všude čisto a nejlepší jsou doplňky v kabince – micelární voda, tamponky, ručníky, čelenka i gumičky.“</blockquote>
           <figcaption>E. N. · Google</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review">
           <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
           <blockquote>„Doporučila jsem ho i kamarádkám a všechny jsou nadšené. Velmi příjemná obsluha, čisto, pohodlí. Parkovat se dá přímo před studiem.“</blockquote>
           <figcaption>L. L. · Google</figcaption>
         </figure>
-        <figure class="review reveal">
+        <figure class="review">
           <div class="stars" aria-label="5 hvězdiček">★★★★★</div>
           <blockquote>„Chodím sem už zhruba 17 let a nešla bych jinam.“</blockquote>
           <figcaption>L. J. · Google</figcaption>
@@ -430,7 +520,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
       </table>
     </div>
   </div>
-  <div class="wrap map-wrap reveal"></div>
+  <div class="wrap map-wrap reveal"><div class="map-box gmap "><iframe src="https://maps.google.com/maps?q=Sol%C3%A1rn%C3%AD%20studio%20Slun%C3%AD%C4%8Dko%2C%20Dolnojir%C4%8Dansk%C3%A1%20385%2F40%2C%20Praha&z=16&output=embed&hl=cs" loading="lazy" title="Mapa – Solární studio Sluníčko" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div></div>
 </section>
 </main>
 
@@ -472,7 +562,74 @@ h1,h2,h3{text-transform:uppercase;font-weight:600}
   addEventListener('scroll',function(){hd.classList.toggle('scrolled',scrollY>40);},{passive:true});
 })();
 </script>
-
-
+<script>
+addEventListener('DOMContentLoaded',function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  // jediný engine plynulého posouvání: Lenis, napojený na ScrollTrigger
+  var lenis=null;
+  if(window.Lenis){lenis=new Lenis({lerp:.12});lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000);});gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length>1&&document.querySelector(id)){e.preventDefault();lenis.scrollTo(id,{offset:-72});}});});}
+  // úvodní fotka se odkryje zdola
+  gsap.fromTo('[data-reveal-img]',{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:1.1,ease:'expo.out',delay:.2});
+  gsap.fromTo('[data-reveal-img] img',{scale:1.15},{scale:1,duration:1.6,ease:'expo.out',delay:.2});
+  // fotky solárií se odkrývají při příjezdu
+  gsap.utils.toArray('.device-img img, .review-grid, .perm').forEach(function(el){
+    gsap.from(el,{y:30,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});});
+  // na počítači: vodorovný průjezd solárii (sekce se na chvíli zastaví)
+  ScrollTrigger.matchMedia({'(min-width: 1024px)':function(){
+    var track=document.querySelector('.device-grid'),sec=document.querySelector('.devices');
+    var dist=function(){return Math.max(0,track.scrollWidth-sec.querySelector('.wrap').clientWidth);};
+    gsap.to(track,{x:function(){return -dist();},ease:'none',scrollTrigger:{trigger:sec,start:'top 72',end:function(){return '+='+dist();},pin:true,scrub:.6,invalidateOnRefresh:true}});
+  }});
+  addEventListener('load',function(){ScrollTrigger.refresh();});
+  document.fonts&&document.fonts.ready.then(function(){ScrollTrigger.refresh();});
+});
+</script><script>
+(function(){
+  // karusel: tečky a šipky
+  document.querySelectorAll('[data-carousel]').forEach(function(c){
+    var wrap=c.parentNode,dots=wrap.querySelectorAll('.dot'),cards=c.children;
+    function idx(){var w=cards[0].getBoundingClientRect().width+12;return Math.round(c.scrollLeft/w);}
+    function upd(){var i=idx();dots.forEach(function(d,j){d.classList.toggle('on',i===j);});}
+    function go(i){i=Math.max(0,Math.min(cards.length-1,i));c.scrollTo({left:cards[i].offsetLeft-c.offsetLeft-20,behavior:'smooth'});}
+    c.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});
+    dots.forEach(function(d,j){d.addEventListener('click',function(){go(j);});});
+    wrap.querySelectorAll('.car-btn').forEach(function(b){b.addEventListener('click',function(){go(idx()+(+b.dataset.dir));});});
+    upd();
+  });
+  // záložky
+  document.querySelectorAll('[data-tabs]').forEach(function(t){
+    var tabs=t.querySelectorAll('[role=tab]');
+    tabs.forEach(function(b,i){b.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');document.getElementById(x.getAttribute('aria-controls')).hidden=(x!==b);});});
+      b.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.click();n.focus();}});});
+  });
+})();
+</script>
+<script>document.querySelectorAll('.section h2').forEach(function(h){h.setAttribute('data-split','')});</script><script>
+addEventListener('DOMContentLoaded',function(){
+  if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function split(el){ // nadpis zůstane čitelný pro čtečky (aria-label), slova jsou jen dekorace
+    el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());
+    (function walk(n){[].slice.call(n.childNodes).forEach(function(c){
+      if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){
+        if(!t) return; if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return;}
+        var w=document.createElement('span');w.className='w';w.setAttribute('aria-hidden','true');var i=document.createElement('span');i.textContent=t;w.appendChild(i);f.appendChild(w);});
+        n.replaceChild(f,c);}
+      else if(c.nodeType===1&&c.tagName!=='BR'&&c.tagName!=='A') walk(c);});})(el);
+    return el.querySelectorAll('.w>span');
+  }
+  document.querySelectorAll('[data-split]').forEach(function(h,idx){
+    var words=split(h);
+    if(idx===0){ gsap.from(words,{yPercent:110,duration:.9,ease:'expo.out',stagger:.06,delay:.1});
+      gsap.from('.hero [data-intro]',{y:14,opacity:0,duration:.7,ease:'power3.out',stagger:.08,delay:.45}); }
+    else if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger);
+      gsap.from(words,{yPercent:110,duration:.8,ease:'expo.out',stagger:.05,scrollTrigger:{trigger:h,start:'top 85%',once:true}}); }
+  });
+});
+</script>
 </body>
 </html>
