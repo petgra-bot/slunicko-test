@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow"><title>Solární studio Sluníčko – Kamýk a Radotín</title><meta name="description" content="Solární studio Sluníčko – Kamýk a Radotín">
+<link rel="icon" href="../../assets/icons/slunce.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&family=Manrope:wght@600;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<style>
+*{box-sizing:border-box}html,body{height:100%}
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ink:#1C1A1B;--sun:#FFD23F;--y:#FFC20E;--flam:#F7A8BA;--blush:#F9C9D4;--butter:#FFF1B8}
+body{margin:0;font-family:'Carlito',system-ui,sans-serif;color:var(--ink);background:#fff}
+a{color:inherit}img{max-width:100%;display:block}
+.ribbon{position:fixed;left:0;right:0;top:0;z-index:50;background:#1C1A1B;color:#fff;font:600 12px/1.4 system-ui,sans-serif;text-align:center;padding:5px 10px}
+.ribbon a{color:#FFD23F;margin-left:6px}
+:focus-visible{outline:3px solid #1C1A1B;outline-offset:3px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}
+
+body{background:#1C1A1B;color:#fff}
+.v2{min-height:100svh;display:flex;flex-direction:column;padding:48px max(20px,4vw) 24px}
+.v2-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.v2-head img{height:70px;width:auto;background:#fff;border-radius:10px;padding:6px 12px}
+.v2-head p{margin:0;font-size:15px;opacity:.75;max-width:30ch;text-align:right}
+.rows{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;margin:24px 0}
+.row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.22);text-decoration:none;color:#fff;overflow:hidden;isolation:isolate}
+.row:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill);clip-path:inset(0 100% 0 0);transition:clip-path 600ms var(--ease-out)}
+.row-k{--fill:#FFC20E}.row-r{--fill:#F7A8BA}
+.row h2{margin:0;font:600 clamp(64px,13vw,200px)/.85 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:-.01em;transition:color 300ms ease}
+.row-r h2{font-family:'Manrope',sans-serif;font-weight:800;text-transform:none;letter-spacing:-.04em}
+.row-meta{text-align:right;padding-bottom:10px;transition:color 300ms ease}
+.row-meta b{display:block;font-size:18px}
+.row-meta span{font-size:14px;opacity:.75}
+.row .arrow{display:inline-block;font-size:28px;transition:transform 400ms var(--ease-out)}
+.row-photo{position:absolute;right:22%;top:50%;width:min(300px,26vw);aspect-ratio:4/3;object-fit:cover;border-radius:8px;transform:translateY(-50%) rotate(-3deg) scale(.9);opacity:0;transition:opacity 300ms ease,transform 600ms var(--ease-out);pointer-events:none}
+@media (hover:hover) and (pointer:fine){
+  .row:hover::before,.row:focus-visible::before{clip-path:inset(0 0 0 0)}
+  .row:hover h2,.row:hover .row-meta{color:#1C1A1B}
+  .row:hover .arrow{transform:translateX(10px)}
+  .row:hover .row-photo{opacity:1;transform:translateY(-50%) rotate(-3deg) scale(1)}
+}
+.v2-wl{display:none;background:#F7A8BA;color:#1C1A1B;border-radius:10px;padding:22px;margin-top:4px}
+.v2-wl.open{display:block;animation:done 400ms var(--ease-out)}
+.v2-wl h3{margin:0 0 4px;font:800 24px 'Manrope',sans-serif}
+.v2-wl p{margin:0 0 14px}
+.v2-foot{display:flex;justify-content:space-between;gap:12px;font-size:13px;opacity:.6;flex-wrap:wrap}
+@media (max-width:760px){.v2-head{flex-direction:column;align-items:flex-start}.v2-head p{text-align:left}
+  .row{grid-template-columns:1fr}.row-meta{text-align:left}.row-photo{display:none}
+  .row::before{clip-path:inset(0 0 0 0);opacity:.12}}
+
+.wl-form{max-width:520px}
+.wl-label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+.wl-row{display:flex;gap:8px}
+.wl-row input{flex:1;min-width:0;font:inherit;font-size:17px;padding:14px 16px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink)}
+.wl-row input[aria-invalid="true"]{border-color:#B02A47}
+.wl-btn{font:inherit;font-weight:700;font-size:16px;padding:14px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;white-space:nowrap;transition:transform 160ms var(--ease-out),opacity 200ms ease}
+.wl-btn:active{transform:scale(.97)}
+.wl-btn[disabled]{opacity:.6;cursor:progress}
+.wl-hp{position:absolute;left:-9999px}
+.wl-consent{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.4;margin-top:10px}
+.wl-consent input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:#1C1A1B}
+.wl-msg{min-height:1.4em;margin:10px 0 0;font-weight:700;font-size:14px}
+.wl-msg.err{color:#B02A47}
+.wl-done{display:flex;gap:12px;align-items:center;font-weight:700;font-size:18px;opacity:1;transform:none;transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out)}
+@starting-style{.wl-done{opacity:0;transform:translateY(8px)}}
+@keyframes done{from{opacity:0;transform:translateY(8px)}}
+@media (max-width:520px){.wl-row{flex-direction:column}}
+</style></head><body>
+<div class="ribbon">Rozcestník – návrh 2 · Dva řádky <a href="../">← návrhy rozcestníku</a></div>
+<main class="v2">
+  <header class="v2-head"><img src="../../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60"><p data-intro>Jedno Sluníčko, dvě místa v Praze. Kam se chystáte?</p></header>
+  <div class="rows">
+    <a class="row row-k" href="../../h/">
+      <img class="row-photo" src="../../assets/img/recepce.jpg" alt="" width="800" height="533">
+      <h2 data-split>Kamýk</h2>
+      <div class="row-meta"><b>Otevřeno · Praha 12</b><span>Dolnojirčanská 40</span> <span class="arrow" aria-hidden="true">→</span></div>
+    </a>
+    <a class="row row-r" href="#wl" onclick="var w=document.getElementById('wl');w.classList.add('open');w.querySelector('input[type=email]').focus();return false;">
+      <h2 data-split>Radotín</h2>
+      <div class="row-meta"><b>Brzy otevíráme · Praha 16</b><span>náměstí Osvoboditelů</span> <span class="arrow" aria-hidden="true">→</span></div>
+    </a>
+    <div class="v2-wl" id="wl"><h3>Radotín se připravuje</h3><p>Nechte nám e-mail a dáme vám vědět v den otevření.</p><form class="wl-form" novalidate data-waitlist>
+  <label class="wl-label" for="wl-email-2">Váš e-mail</label>
+  <div class="wl-row">
+    <input id="wl-email-2" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jmeno@email.cz" required>
+    <button class="wl-btn" type="submit"><span>Dejte mi vědět</span></button>
+  </div>
+  <input class="wl-hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="wl-consent"><input type="checkbox" name="souhlas" required> Souhlasím se zasláním e-mailu o otevření studia v Radotíně. Adresu použijeme jen k tomu a souhlas můžete kdykoli odvolat. <a href="#" onclick="return false">Ochrana osobních údajů</a></label>
+  <p class="wl-msg" role="status" aria-live="polite"></p>
+</form></div>
+  </div>
+  <footer class="v2-foot"><span>Solární studio Sluníčko</span><span>Kamýk 720 345 340</span></footer>
+</main>
+<script>
+addEventListener('DOMContentLoaded',function(){
+  if(!window.gsap||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());
+    el.innerHTML=el.textContent.trim().split(/\s+/).map(function(t){return '<span class="w" aria-hidden="true"><span>'+t+'</span></span>';}).join(' ');
+  });
+  gsap.from('[data-split] .w>span',{yPercent:110,duration:.9,ease:'expo.out',stagger:.05,delay:.15});
+  gsap.from('[data-intro]',{y:16,opacity:0,duration:.7,ease:'power3.out',stagger:.08,delay:.5,clearProps:'transform,opacity'});
+});
+</script><script>
+document.querySelectorAll('[data-waitlist]').forEach(function(f){
+  var em=f.querySelector('input[type=email]'),cb=f.querySelector('input[type=checkbox]'),msg=f.querySelector('.wl-msg'),btn=f.querySelector('button');
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); msg.className='wl-msg'; em.removeAttribute('aria-invalid');
+    if(f.web.value) return;                       // robot
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){msg.textContent='Zkontrolujte prosím e-mail – chybí zavináč nebo tečka.';msg.className='wl-msg err';em.setAttribute('aria-invalid','true');em.focus();return;}
+    if(!cb.checked){msg.textContent='Zaškrtněte prosím souhlas, jinak vám nemůžeme napsat.';msg.className='wl-msg err';cb.focus();return;}
+    btn.disabled=true;var sp=btn.firstChild;btn.classList.add('morph');setTimeout(function(){sp.textContent='Ukládám…';btn.classList.remove('morph');},120);
+    // NÁHLED: e-mail se zatím nikam neodesílá. Ostrá verze pošle data do vybrané služby.
+    setTimeout(function(){f.innerHTML='<div class="wl-done">✓ Díky! (Náhled – e-mail se zatím nikam neukládá.)</div>';},700);
+  });
+});
+</script>
+</body></html>
