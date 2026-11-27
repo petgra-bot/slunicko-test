@@ -375,6 +375,34 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
 .h-rev .btn-main{background:#1C1A1B;color:#fff;border:2px solid #1C1A1B}
 .h-rev .btn-main img{filter:invert(1)}
 
+.section{padding:clamp(32px,4.5vw,56px) 0}
+.perks{padding:20px 0}
+.advice-in{gap:24px 48px;align-items:start}
+.advice h2{margin-bottom:.3em}
+.advice p{margin-bottom:.7em}
+.uv-note{margin:0;padding:12px 14px}
+.acc .tip{padding:12px 0}
+.acc .tip:first-child{padding-top:0}
+.sec-head{gap:12px}
+.art-grid{margin-top:18px}
+.h-where-in{margin-top:8px}
+.h-where .hours{margin:8px 0 12px}
+.h-rev .reviews-cta{display:flex;flex-wrap:nowrap;gap:10px}
+@media (max-width:760px){
+  .advice-in{gap:14px}
+  .h-rev .reviews-cta .btn{flex:1;padding:12px 8px;font-size:15px;justify-content:center}
+  .h-stats{margin:16px 0 20px}
+  .h-stat{padding:14px 12px}
+  .arts .art-grid{gap:8px}
+  .arts .sec-head h2{font-size:26px}
+  .arts{padding:28px 0}
+  .arts .art-card{display:grid;grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px;box-shadow:none}
+  .arts .art-card img{grid-row:1/3;width:84px;height:64px;aspect-ratio:auto;border-radius:6px}
+  .arts .art-card .art-date{margin:0;font-size:12px;align-self:end}
+  .arts .art-card h3{margin:0;font-size:16px;align-self:start}
+  .arts .art-card p,.arts .art-card .art-more{display:none}
+}
+
 .arts{background:#FFF6D6}
 .art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
 .art-card{display:flex;flex-direction:column;background:#fff;border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:transform 200ms var(--ease-out)}
