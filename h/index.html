@@ -7,7 +7,7 @@
 <title>Návrh H – Solární studio Sluníčko</title>
 <meta name="description" content="Rodinné solární studio na Kamýku. Pět solárií Ergoline, osobní přístup, parkování před studiem. Po–Pá 9–21, So–Ne 12–20.">
 <link rel="icon" href="../assets/icons/slunce.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box}
@@ -179,7 +179,7 @@ p{margin:0 0 1em}
   .logo-name{font-size:23px}
 }
 
-:root{--bg:#fff;--ink:#222;--line:#e6e1d6;--font-head:'Oswald',sans-serif;--font-body:'Lato',sans-serif;--y:#FFC20E}
+:root{--bg:#fff;--ink:#222;--line:#e6e1d6;--font-head:'Oswald',sans-serif;--font-body:'Carlito',sans-serif;--y:#FFC20E}
 h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
 .site-header{background:rgba(255,255,255,.96);box-shadow:0 1px 0 var(--line)}
 .logo-name{color:#E2491B;font-family:'Limelight',serif}
@@ -402,6 +402,9 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
   .arts .art-card h3{margin:0;font-size:16px;align-self:start}
   .arts .art-card p,.arts .art-card .art-more{display:none}
 }
+
+html{scroll-padding-top:124px}
+@media (max-width:760px){html{scroll-padding-top:116px}}
 
 .arts{background:#FFF6D6}
 .art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
