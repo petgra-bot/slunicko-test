@@ -12,39 +12,6 @@ a{color:inherit}img{max-width:100%;display:block}
 :focus-visible{outline:3px solid #1C1A1B;outline-offset:3px}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}
 .r-logo{display:inline-flex;align-items:center;gap:10px;color:#fff}.rl-t{display:flex;flex-direction:column;line-height:1}.rl-n{font-family:'Limelight',serif;font-size:26px;text-transform:uppercase}.rl-s{font:800 9px 'Nunito',sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:4px}
-body{background:#1C1A1B;color:#fff}
-.v2{min-height:100svh;display:flex;flex-direction:column;padding:48px max(20px,4vw) 24px}
-.v2-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.v2-head img{height:70px;width:auto;background:#fff;border-radius:10px;padding:6px 12px}
-.v2-head p{margin:0;font-size:15px;opacity:.75;max-width:30ch;text-align:right}
-.rows{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;margin:24px 0}
-.row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.22);text-decoration:none;color:#fff;overflow:hidden;isolation:isolate}
-.row:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
-.row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill);clip-path:inset(0 100% 0 0);transition:clip-path 600ms var(--ease-out)}
-.row-k{--fill:#FFC20E}.row-r{--fill:#FFD23F}
-.row h2{margin:0;font:600 clamp(64px,13vw,200px)/.85 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:-.01em;transition:color 300ms ease}
-.row-r h2{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:125%;letter-spacing:-.03em}
-.row-r .row-meta b{font-family:'Archivo',sans-serif}
-.row-meta{text-align:right;padding-bottom:10px;transition:color 300ms ease}
-.row-meta b{display:block;font-size:18px}
-.row-meta span{font-size:14px;opacity:.75}
-.row .arrow{display:inline-block;font-size:28px;transition:transform 400ms var(--ease-out)}
-.row-photo{position:absolute;right:22%;top:50%;width:min(300px,26vw);aspect-ratio:4/3;object-fit:cover;border-radius:8px;transform:translateY(-50%) rotate(-3deg) scale(.9);opacity:0;transition:opacity 300ms ease,transform 600ms var(--ease-out);pointer-events:none}
-@media (hover:hover) and (pointer:fine){
-  .row:hover::before,.row:focus-visible::before{clip-path:inset(0 0 0 0)}
-  .row:hover h2,.row:hover .row-meta{color:#1C1A1B}
-  .row:hover .arrow{transform:translateX(10px)}
-  .row:hover .row-photo{opacity:1;transform:translateY(-50%) rotate(-3deg) scale(1)}
-}
-.v2-wl{display:none;background:#FFD23F;color:#1C1A1B;border-radius:10px;padding:22px;margin-top:4px}
-.v2-wl.open{display:block;animation:done 400ms var(--ease-out)}
-.v2-wl h3{margin:0 0 4px;font:900 26px 'Archivo',sans-serif;font-stretch:118%;text-transform:uppercase}
-.v2-wl p{margin:0 0 14px}
-.v2-foot{display:flex;justify-content:space-between;gap:12px;font-size:13px;opacity:.6;flex-wrap:wrap}
-@media (max-width:760px){.v2-head{flex-direction:column;align-items:flex-start}.v2-head p{text-align:left}
-  .row{grid-template-columns:1fr}.row-meta{text-align:left}.row-photo{display:none}
-  .row::before{clip-path:inset(0 0 0 0);opacity:.12}}
-
 .wl-form{max-width:520px}
 .wl-label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
 .wl-row{display:flex;gap:8px}
@@ -62,32 +29,59 @@ body{background:#1C1A1B;color:#fff}
 @starting-style{.wl-done{opacity:0;transform:translateY(8px)}}
 @keyframes done{from{opacity:0;transform:translateY(8px)}}
 @media (max-width:520px){.wl-row{flex-direction:column}}
+
+body{background:#EEE8DF}
+.cards{min-height:100svh;padding:64px max(20px,4vw) 32px;display:flex;flex-direction:column;gap:28px}
+.cards-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.cards-head h1{margin:0;font:600 clamp(36px,5vw,64px)/.95 'Oswald',sans-serif;text-transform:uppercase}
+.cards-head p{margin:0;font-size:17px;max-width:36ch}
+.deck{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);perspective:1400px}
+.card{position:relative;border-radius:16px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(22px,3vw,40px);
+  text-decoration:none;transform-style:preserve-3d;transition:box-shadow 300ms var(--ease-out),opacity 300ms ease,filter 300ms ease;box-shadow:0 18px 40px -24px rgba(28,26,27,.5)}
+.card-k{color:#fff;background:#2b2622}
+.card-k img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-k::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,14,10,.9),rgba(18,14,10,.05) 60%)}
+.card-r{color:#fff;background:#1C1A1B;font-family:'Archivo',sans-serif}
+.card>*{position:relative;z-index:2}
+.card .k-logo{position:absolute;left:clamp(22px,3vw,40px);top:clamp(22px,3vw,36px);height:64px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.card .r-logo{position:absolute;left:clamp(22px,3vw,40px);top:clamp(22px,3vw,36px)}
+.card .tag{display:inline-block;align-self:flex-start;font:700 12px/1 'Carlito',sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:7px 10px;border-radius:6px;margin-bottom:14px}
+.card-k .tag{background:var(--y);color:var(--ink)}.card-r .tag{background:#FFD23F;color:#1C1A1B}
+.card h2{margin:0 0 8px}
+.card-k h2{font:600 clamp(48px,6vw,92px)/.9 'Oswald',sans-serif;text-transform:uppercase}
+.card-r h2{font:900 clamp(44px,5.4vw,84px)/.9 'Archivo',sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.02em}
+.card p{margin:0 0 18px;font-size:17px;max-width:36ch}
+.card .go{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;font:700 17px 'Carlito',sans-serif;padding:13px 20px;border-radius:8px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer;transition:transform 160ms var(--ease-out)}
+.card .go:active{transform:scale(.97)}
+.card-k .go{background:var(--y);border-color:var(--y);color:var(--ink)}
+.card-r .go{color:#FFD23F}
+.card-r .wl-panel{display:none}.card-r.open .wl-panel{display:block}.card-r.open .go{display:none}
+.card-r .wl-label,.card-r .wl-consent{color:#fff}.card-r .wl-consent a{color:#FFD23F}
+.card-r .wl-btn{background:#FFD23F;color:#1C1A1B;border-color:#FFD23F}.card-r .wl-row input{border-color:#fff}.card-r .wl-msg.err{color:#F7A8BA}
+.deck.has-hover .card:not(.is-hover){opacity:.82;filter:saturate(.85)}
+.card.is-hover{box-shadow:0 40px 70px -30px rgba(28,26,27,.6)}
+@media (max-width:760px){.deck{grid-template-columns:1fr}.card{min-height:420px}.cards{padding-top:48px}}
 </style></head><body>
-<div class="ribbon">Rozcestník – návrh 2 · Dva řádky <a href="../">← návrhy rozcestníku</a></div>
-<main class="v2">
-  <header class="v2-head"><img src="../../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60"><p data-intro>Jedno Sluníčko, dvě místa v Praze. Kam se chystáte?</p></header>
-  <div class="rows">
-    <a class="row row-k" href="../../h/">
-      <img class="row-photo" src="../../assets/img/recepce.jpg" alt="" width="800" height="533">
-      <h2 data-split>Kamýk</h2>
-      <div class="row-meta"><b>Otevřeno · Praha 12</b><span>Dolnojirčanská 40</span> <span class="arrow" aria-hidden="true">→</span></div>
-    </a>
-    <a class="row row-r" href="#wl" onclick="var w=document.getElementById('wl');w.classList.add('open');w.querySelector('input[type=email]').focus();return false;">
-      <h2 data-split>Radotín</h2>
-      <div class="row-meta"><b>Brzy otevíráme · Praha 16</b><span>náměstí Osvoboditelů</span> <span class="arrow" aria-hidden="true">→</span></div>
-    </a>
-    <div class="v2-wl" id="wl"><h3>Radotín se připravuje</h3><p>Nechte nám e-mail a dáme vám vědět v den otevření.</p><form class="wl-form" novalidate data-waitlist>
-  <label class="wl-label" for="wl-email-2">Váš e-mail</label>
+<div class="ribbon">Rozcestník – návrh 2 · Dvě karty <a href="../">← návrhy rozcestníku</a></div>
+<main class="cards">
+  <header class="cards-head"><h1 data-split>Kam se chystáte?</h1><p data-intro>Jedno Sluníčko, dvě místa v Praze. Na Kamýku vás čekáme už teď, Radotín brzy otevíráme.</p></header>
+  <div class="deck" data-deck>
+    <a class="card card-k" href="../../h/" data-tilt><img class="bg" src="../../assets/img/recepce.jpg" alt="" width="800" height="533"><img class="k-logo" src="../../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko – Kamýk" width="180" height="60">
+      <span class="tag">Otevřeno · Praha 12</span><h2>Kamýk</h2><p>Dolnojirčanská 40. Pět solárií Ergoline, parkování přímo před dveřmi.</p><span class="go">Vstoupit <span aria-hidden="true">→</span></span></a>
+    <section class="card card-r" data-tilt aria-label="Radotín – brzy otevíráme"><span class="r-logo" aria-label="Sluníčko Radotín"><svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"><circle cx="32" cy="32" r="11" fill="#FFD23F"/><path d="M32 4c3 4-3 6 0 10M32 50c3 4-3 6 0 10M4 32c4-3 6 3 10 0M50 32c4-3 6 3 10 0M12 12c5 1 2 6 7 7M45 45c5 1 2 6 7 7M52 12c-1 5-6 2-7 7M19 45c-1 5-6 2-7 7"/></g></svg><span class="rl-t"><span class="rl-n">Sluníčko</span><span class="rl-s">Solární studio · Radotín</span></span></span>
+      <span class="tag">Brzy · Praha 16</span><h2>Radotín</h2><p>Nové Sluníčko na náměstí Osvoboditelů. Dáme vám vědět v den otevření.</p>
+      <button class="go" type="button" onclick="var c=this.closest('.card-r');c.classList.add('open');c.querySelector('input[type=email]').focus()">Chci vědět jako první <span aria-hidden="true">→</span></button>
+      <div class="wl-panel"><form class="wl-form" novalidate data-waitlist>
+  <label class="wl-label" for="wl-email-21">Váš e-mail</label>
   <div class="wl-row">
-    <input id="wl-email-2" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jmeno@email.cz" required>
+    <input id="wl-email-21" name="email" type="email" inputmode="email" autocomplete="email" placeholder="jmeno@email.cz" required>
     <button class="wl-btn" type="submit"><span>Dejte mi vědět</span></button>
   </div>
   <input class="wl-hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="wl-consent"><input type="checkbox" name="souhlas" required> Souhlasím se zasláním e-mailu o otevření studia v Radotíně. Adresu použijeme jen k tomu a souhlas můžete kdykoli odvolat. <a href="#" onclick="return false">Ochrana osobních údajů</a></label>
   <p class="wl-msg" role="status" aria-live="polite"></p>
-</form></div>
+</form></div></section>
   </div>
-  <footer class="v2-foot"><span>Solární studio Sluníčko</span><span>Kamýk 720 345 340</span></footer>
 </main>
 <script>
 addEventListener('DOMContentLoaded',function(){
@@ -112,5 +106,21 @@ document.querySelectorAll('[data-waitlist]').forEach(function(f){
     setTimeout(function(){f.innerHTML='<div class="wl-done">✓ Díky! (Náhled – e-mail se zatím nikam neukládá.)</div>';},700);
   });
 });
+</script><script>
+(function(){
+  // jemné naklonění karty za kurzorem (dekorativní, s dojezdem – lerp místo okamžitého skoku); jen myš, ne při omezeném pohybu
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var deck=document.querySelector('[data-deck]');
+  document.querySelectorAll('[data-tilt]').forEach(function(c){
+    var tx=0,ty=0,x=0,y=0,raf=null,lift=0,tl=0;
+    function loop(){x+=(tx-x)*.12;y+=(ty-y)*.12;lift+=(tl-lift)*.12;
+      c.style.transform='rotateX('+y.toFixed(2)+'deg) rotateY('+x.toFixed(2)+'deg) translateY('+(-lift).toFixed(2)+'px)';
+      if(Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(tl-lift)>.02) raf=requestAnimationFrame(loop); else raf=null;}
+    function kick(){if(!raf) raf=requestAnimationFrame(loop);}
+    c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();tx=((e.clientX-b.left)/b.width-.5)*7;ty=-((e.clientY-b.top)/b.height-.5)*5;tl=6;kick();});
+    c.addEventListener('pointerenter',function(){c.classList.add('is-hover');deck.classList.add('has-hover');});
+    c.addEventListener('pointerleave',function(){tx=ty=tl=0;kick();c.classList.remove('is-hover');deck.classList.remove('has-hover');});
+  });
+})();
 </script>
 </body></html>
