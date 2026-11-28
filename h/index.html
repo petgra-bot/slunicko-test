@@ -127,6 +127,9 @@ p{margin:0 0 1em}
 .ob-state{font-weight:700}
 .ob-state.is-open::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#3E9B4F;margin-right:8px;box-shadow:0 0 0 3px rgba(62,155,79,.22)}
 .ob-state.is-closed::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#C73E5A;margin-right:8px}
+.is-soon::before{animation:soon 1.6s ease-in-out infinite}
+@keyframes soon{50%{opacity:.35}}
+@media (prefers-reduced-motion: reduce){.is-soon::before{animation:none}}
 .ob-hours{opacity:.85}
 .ob-where{margin-left:auto;opacity:.85}
 .zv-strip{background:#1C1A1B;color:#fff;font-size:15px;position:relative;z-index:55}
@@ -779,15 +782,29 @@ html{scroll-padding-top:124px}
   function sched(d){var z=zv(d);if(z){return z.od?{free:true,special:z,from:hm(z.od),to:hm(z['do'])}:{free:true,special:z,closed:true};}
     var free=d.getDay()===0||d.getDay()===6||isHoliday(d);return {free:free,from:free?12:9,to:free?20:21};}
   function dcz(d){return d.getDate()+'. '+(d.getMonth()+1)+'.';}
-  var now=(demo&&P.get('den'))?new Date(P.get('den')+'T15:00:00'):new Date();
-  var s=sched(now),h=now.getHours()+now.getMinutes()/60;
-  function next(){for(var i=1;i<10;i++){var d=new Date(now);d.setDate(now.getDate()+i);var x=sched(d);if(!x.closed)return {d:d,s:x,i:i};}}
-  var n=next(),nlab=n.i===1?('zítra od '+fmt(n.s.from)):('otevíráme '+dcz(n.d)+' od '+fmt(n.s.from));
-  var open=!s.closed&&h>=s.from&&h<s.to, tag=s.special?(' ('+s.special.nazev+')'):'';
-  var long=s.closed?('Dnes zavřeno'+tag+' · '+nlab):open?('Právě otevřeno'+tag+' · do '+fmt(s.to)):(h<s.from?('Dnes'+tag+' otevíráme v '+fmt(s.from)):('Zavřeno · '+nlab));
-  var short=s.closed?('Dnes zavřeno'):open?('Otevřeno do '+fmt(s.to)):(h<s.from?('Dnes od '+fmt(s.from)):(n.i===1?'Zítra od '+fmt(n.s.from):dcz(n.d)+' od '+fmt(n.s.from)));
-  document.querySelectorAll('[data-open-now]').forEach(function(el){el.textContent=long;el.classList.toggle('is-open',open);el.classList.toggle('is-closed',!open);});
-  document.querySelectorAll('[data-open-short]').forEach(function(el){el.textContent=short;});
+  // „v“ / „ve“ podle výslovnosti: ve dvě, ve tři, ve čtyři, ve dvanáct, ve třináct, ve čtrnáct, ve dvacet…
+  function ve(x){var hh=Math.floor(x);return ([2,3,4,12,13,14,20,21,22,23].indexOf(hh)>-1?'ve ':'v ')+fmt(x);}
+  // Náhled jiného času: ?cas=11:30 (případně s &den=2026-12-24)
+  var now=(P.get('den')||P.get('cas'))?new Date((P.get('den')||iso(new Date()))+'T'+(P.get('cas')||'15:00')+':00'):new Date();
+  var SOON=1; // hodina předem: „Brzy otevíráme“ / „Brzy zavíráme“
+  function render(){
+    var s=sched(now),h=now.getHours()+now.getMinutes()/60;
+    function next(){for(var i=1;i<10;i++){var d=new Date(now);d.setDate(now.getDate()+i);var x=sched(d);if(!x.closed)return {d:d,s:x,i:i};}}
+    var n=next(),nlab=n.i===1?('zítra od '+fmt(n.s.from)):('otevíráme '+dcz(n.d)+' od '+fmt(n.s.from));
+    var open=!s.closed&&h>=s.from&&h<s.to, tag=s.special?(' ('+s.special.nazev+')'):'';
+    var soonClose=open&&(s.to-h)<=SOON, soonOpen=!s.closed&&h<s.from&&(s.from-h)<=SOON;
+    var long=s.closed?('Dnes zavřeno'+tag+' · '+nlab)
+      :soonClose?('Brzy zavíráme · otevřeno do '+fmt(s.to))
+      :open?('Právě otevřeno'+tag+' · do '+fmt(s.to))
+      :soonOpen?('Brzy otevíráme · '+ve(s.from))
+      :(h<s.from?('Dnes'+tag+' otevíráme '+ve(s.from)):('Zavřeno · '+nlab));
+    var short=s.closed?('Dnes zavřeno'):soonClose?('Brzy zavíráme'):open?('Otevřeno do '+fmt(s.to)):soonOpen?('Brzy otevíráme'):(h<s.from?('Dnes od '+fmt(s.from)):(n.i===1?'Zítra od '+fmt(n.s.from):dcz(n.d)+' od '+fmt(n.s.from)));
+    document.querySelectorAll('[data-open-now]').forEach(function(el){el.textContent=long;el.classList.toggle('is-open',open);el.classList.toggle('is-closed',!open);el.classList.toggle('is-soon',soonClose||soonOpen);});
+    document.querySelectorAll('[data-open-short]').forEach(function(el){el.textContent=short;});
+    return s;
+  }
+  var s=render();
+  if(!P.get('cas')&&!P.get('den')) setInterval(function(){now=new Date();render();},60000); // stav se mění i bez obnovení stránky
   if(!s.special){var row=document.querySelector('tr[data-row="'+(s.free?'free':'work')+'"]'); if(row) row.classList.add('today');}
   // nadcházející výjimky (14 dní dopředu; v ukázce vždy) -> pruh nahoře, štítek v liště, řádky v tabulce
   var up=Z.filter(function(z){var d=new Date(z.den+'T12:00:00'),diff=(d-now)/864e5;return demo||(diff>-1&&diff<=14);});
