@@ -564,6 +564,11 @@ html{scroll-padding-top:124px}
   .arts{background:#FFF6D6}
 }
 section.arts{background:#fff}@media (max-width:860px){section.arts{background:#fff}}
+@media (min-width:861px){
+  .h-where .map-box{min-height:420px;height:auto;align-self:stretch}
+  .h-where-text>:last-child{margin-bottom:0}
+}
+
 .arts{background:#FFF6D6}
 .art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
 .art-card{display:flex;flex-direction:column;background:#fff;border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:transform 200ms var(--ease-out)}
@@ -926,6 +931,15 @@ section.arts{background:#fff}@media (max-width:860px){section.arts{background:#f
   b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true');});
   m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus();}});
+})();
+</script><script>
+(function(){
+  // výška lišty po odscrollování (stav .scrolled) -> přesný odskok sekcí pod ni
+  var hd=document.querySelector('.site-header');if(!hd)return;
+  function fix(){var had=hd.classList.contains('scrolled');hd.classList.add('scrolled');
+    var hgt=hd.getBoundingClientRect().height;if(!had)hd.classList.remove('scrolled');
+    document.documentElement.style.scrollPaddingTop=Math.round(hgt)+'px';}
+  fix();addEventListener('resize',fix);addEventListener('load',fix);
 })();
 </script>
 </body>
