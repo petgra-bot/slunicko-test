@@ -322,7 +322,6 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
 <body>
 
 <div class="draft-ribbon">Návrh A · Věrná modernizace · pracovní verze <a href="../">← všechny návrhy</a></div>
-<div class="zv-strip" data-zv-strip hidden><div class="wrap zv-in"><span><strong>Otevírací doba o svátcích:</strong> <span data-zv-text></span></span><button type="button" aria-label="Skrýt oznámení">×</button></div></div>
 <header class="site-header" id="top">
   <div class="wrap header-in">
     <a class="logo logo-orig" href="#top" aria-label="Solární studio Sluníčko – úvod"><img src="../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60"></a>
@@ -335,7 +334,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
     <div class="wrap openbar-in">
       <span class="ob-state" data-open-now>Po–Pá 9–21 · So, Ne a svátky 12–20</span>
       <span class="ob-hours">Po–Pá <b>9–21</b> · So, Ne a svátky <b>12–20</b></span>
-      <a class="ob-zv" href="#kontakt" data-zv-chip hidden>Sváteční otevírací doba →</a>
+      <a class="ob-zv" href="#kontakt" data-zv-chip hidden>Vánoční otevírací doba →</a>
       <a class="ob-where" href="#kontakt">Dolnojirčanská 40, Kamýk</a>
     </div>
   </div>
@@ -470,7 +469,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
       <p class="eyebrow reveal">Rady</p>
       <h2 class="reveal">Jdete poprvé?</h2>
       <p class="reveal">Délku opalování vám doporučíme podle typu pleti a vybraného solária. Kabinka bude připravená – ručník, odličovací voda i brýle.</p>
-      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování znamená pobyt na UV záření – nikdy se nespalte. Osobám mladším 18 let opalování nedoporučujeme; v těhotenství, při užívání léků nebo kožních potížích se poraďte s lékařem.</span></p>
+      <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování znamená pobyt na UV záření – nikdy se nespalte. Mladším 18 let solárium nedoporučujeme – rádi vám poradíme s jinou péčí. V těhotenství, při užívání léků nebo kožních potížích se poraďte s lékařem.</span></p>
     </div>
     <div class="acc reveal">
       <details class="tip"><summary>Jak u nás návštěva probíhá</summary>
@@ -522,7 +521,7 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
 </footer>
 <a class="fab-call" href="tel:+420720345340" aria-label="Zavolat do studia"><img class="ico-s" src="../assets/icons/linka/telefon-maly.svg" width="22" height="22" alt=""></a>
 
-<script>window.SLUNICKO_ZVLASTNI=[];</script>
+<script>window.SLUNICKO_ZVLASTNI=[];window.SLUNICKO_ZV_NAZEV="Vánoční otevírací doba";</script>
 
 <script>
 (function(){
@@ -561,7 +560,9 @@ h1,h2,h3{text-transform:uppercase;font-weight:600;letter-spacing:.01em}
       try{if(localStorage.getItem(k)&&!demo)return;}catch(e){}
       el.querySelector('[data-zv-text]').textContent=txt;el.hidden=false;
       el.querySelector('button').addEventListener('click',function(){el.hidden=true;try{localStorage.setItem(k,'1');}catch(e){}});});
-    document.querySelectorAll('[data-zv-chip]').forEach(function(el){el.hidden=false;});
+    var NZ=window.SLUNICKO_ZV_NAZEV||'Sváteční otevírací doba';
+    document.querySelectorAll('[data-zv-chip]').forEach(function(el){el.textContent=NZ+' →';el.hidden=false;});
+    document.querySelectorAll('[data-zv-table] caption').forEach(function(c){c.textContent=NZ;});
     document.querySelectorAll('[data-zv-table]').forEach(function(t){t.hidden=false;var tb=t.querySelector('tbody');
       up.forEach(function(z){var d=new Date(z.den+'T12:00:00'),tr=document.createElement('tr');tr.innerHTML='<td>'+dcz(d)+' '+z.nazev+'</td><td>'+(z.od?z.od.replace(/^0/,'')+' – '+z['do']:'zavřeno')+'</td>';if(z.den===iso(now))tr.className='today';tb.appendChild(tr);});});
   }
