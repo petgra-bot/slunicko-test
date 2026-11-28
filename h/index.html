@@ -522,6 +522,14 @@ html{scroll-padding-top:124px}
 }
 @media (prefers-reduced-motion: reduce){.mmenu{transition:none}}
 
+.advice-in{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px 56px;align-items:start}
+.advice .acc{margin-top:18px}
+.advice-right .arts-inline{margin-top:0}
+.advice-right .ai-head{margin-bottom:12px}
+.advice-right .ai-head h3{font-size:clamp(24px,2.6vw,32px)}
+.advice-right .ai-list{gap:10px}
+@media (max-width:960px){.advice-in{grid-template-columns:1fr}.advice-right{margin-top:8px}}
+
 .arts{background:#FFF6D6}
 .art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
 .art-card{display:flex;flex-direction:column;background:#fff;border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:transform 200ms var(--ease-out)}
@@ -697,8 +705,7 @@ html{scroll-padding-top:124px}
       <h2 class="reveal">Jdete poprvé?</h2>
       <p class="reveal">Délku opalování vám doporučíme podle typu pleti a vybraného solária. Kabinka bude připravená – ručník, odličovací voda i brýle.</p>
       <p class="uv-note reveal"><img class="ico-s" src="../assets/icons/linka/uv-ochrana-maly.svg" width="32" height="32" alt=""><span>Opalování znamená pobyt na UV záření – nikdy se nespalte. Mladším 18 let solárium nedoporučujeme – rádi vám poradíme s jinou péčí. V těhotenství, při užívání léků nebo kožních potížích se poraďte s lékařem.</span></p>
-    </div>
-    <div class="acc reveal">
+      <div class="acc">
       <details class="tip"><summary>Jak u nás návštěva probíhá</summary>
         <ol class="steps"><li><strong>Rezervujte si čas</strong> na telefonu 720 345 340.</li><li><strong>Poradíme s minutami</strong> podle pleti a vybraného solária.</li><li><strong>Kabinka je připravená</strong> – ručník, odličovací voda, brýle.</li></ol></details>
       <details class="tip"><summary>Tipy na opalování</summary><ul class="tips"><li><strong>Odlíčit a sundat šperky.</strong> Make-up, parfém a některá kosmetika zvyšují citlivost pokožky. Odličovací vodu a tamponky máte připravené v kabince.</li><li><strong>Brýle a čočky.</strong> Vždy chraňte oči brýlemi, kontaktní čočky před opalováním vyjměte.</li><li><strong>Krém určený do solária.</strong> Kosmetiku na slunce s ochranným faktorem nepoužívejte – v soláriu by nefungovala. Vhodné krémy poradíme a prodáme na recepci.</li><li><strong>Postupně, ne najednou.</strong> Začněte kratší dobou a minuty přidávejte pozvolna. Opalování v soláriu a na slunci nekombinujte v jednom dni.</li><li><strong>Kdy raději vynechat.</strong> Při nachlazení, užívání některých léků (např. antibiotik) nebo v těhotenství se nejdřív poraďte s lékařem.</li><li><strong>Po opalování.</strong> Se sprchou počkejte ideálně 2–3 hodiny a pokožku hydratujte.</li></ul></details>
@@ -707,7 +714,9 @@ html{scroll-padding-top:124px}
         <div class="ftype"><span class="ftype-num">II</span><h4>Citlivá pleť</h4><p>Světlá pleť, blond vlasy. Opaluje se pomalu, snadno se spálí.</p></div>
         <div class="ftype"><span class="ftype-num">III</span><h4>Normální pleť</h4><p>Tmavě blond až hnědé vlasy. Opaluje se dobře do hněda.</p></div>
         <div class="ftype"><span class="ftype-num">IV</span><h4>Odolná pleť</h4><p>Snědá pleť, tmavé vlasy. Opaluje se rychle a opálení drží.</p></div></div></details>
-      <div class="arts-inline" id="aktuality">
+      </div>
+    </div>
+    <div class="advice-right"><div class="arts-inline" id="aktuality">
         <div class="ai-head"><h3>Aktuality a rady</h3><a class="link-arrow" href="clanky/">Všechny články</a></div>
         <div class="ai-list">
       <a class="art-card" href="clanky/typ-pleti.html">
@@ -718,8 +727,7 @@ html{scroll-padding-top:124px}
         <img src="../assets/img/ergoline-1600.jpg" alt="" loading="lazy" width="800" height="533">
         <span class="art-date">27. listopadu 2026</span><h3>12 tipů, jak si opalování v soláriu užít naplno</h3><p>Krásné opálení není o tom, kolik minut vydržíte. Sepsali jsme, co doporučujeme klientům, kteří k nám přicházejí poprvé i po letech.</p><span class="art-more">Číst dál →</span>
       </a></div>
-      </div>
-    </div>
+      </div></div>
   </div>
 </section>
 
