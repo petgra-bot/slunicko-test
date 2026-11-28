@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow"><title>Solární studio Sluníčko – Kamýk a Radotín</title><meta name="description" content="Solární studio Sluníčko – Kamýk a Radotín">
-<link rel="icon" href="../../assets/icons/slunce.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&family=Manrope:wght@600;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<link rel="icon" href="../../assets/icons/slunce.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&family=Archivo:wdth,wght@62..125,400;62..125,700;62..125,900&family=Limelight&family=Nunito:wght@800&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <style>
 *{box-sizing:border-box}html,body{height:100%}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ink:#1C1A1B;--sun:#FFD23F;--y:#FFC20E;--flam:#F7A8BA;--blush:#F9C9D4;--butter:#FFF1B8}
@@ -11,7 +11,7 @@ a{color:inherit}img{max-width:100%;display:block}
 .ribbon a{color:#FFD23F;margin-left:6px}
 :focus-visible{outline:3px solid #1C1A1B;outline-offset:3px}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}
-
+.r-logo{display:inline-flex;align-items:center;gap:10px;color:#fff}.rl-t{display:flex;flex-direction:column;line-height:1}.rl-n{font-family:'Limelight',serif;font-size:26px;text-transform:uppercase}.rl-s{font:800 9px 'Nunito',sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:4px}
 body{background:#1C1A1B;color:#fff}
 .v2{min-height:100svh;display:flex;flex-direction:column;padding:48px max(20px,4vw) 24px}
 .v2-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
@@ -21,9 +21,10 @@ body{background:#1C1A1B;color:#fff}
 .row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.22);text-decoration:none;color:#fff;overflow:hidden;isolation:isolate}
 .row:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
 .row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill);clip-path:inset(0 100% 0 0);transition:clip-path 600ms var(--ease-out)}
-.row-k{--fill:#FFC20E}.row-r{--fill:#F7A8BA}
+.row-k{--fill:#FFC20E}.row-r{--fill:#FFD23F}
 .row h2{margin:0;font:600 clamp(64px,13vw,200px)/.85 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:-.01em;transition:color 300ms ease}
-.row-r h2{font-family:'Manrope',sans-serif;font-weight:800;text-transform:none;letter-spacing:-.04em}
+.row-r h2{font-family:'Archivo',sans-serif;font-weight:900;font-stretch:125%;letter-spacing:-.03em}
+.row-r .row-meta b{font-family:'Archivo',sans-serif}
 .row-meta{text-align:right;padding-bottom:10px;transition:color 300ms ease}
 .row-meta b{display:block;font-size:18px}
 .row-meta span{font-size:14px;opacity:.75}
@@ -35,9 +36,9 @@ body{background:#1C1A1B;color:#fff}
   .row:hover .arrow{transform:translateX(10px)}
   .row:hover .row-photo{opacity:1;transform:translateY(-50%) rotate(-3deg) scale(1)}
 }
-.v2-wl{display:none;background:#F7A8BA;color:#1C1A1B;border-radius:10px;padding:22px;margin-top:4px}
+.v2-wl{display:none;background:#FFD23F;color:#1C1A1B;border-radius:10px;padding:22px;margin-top:4px}
 .v2-wl.open{display:block;animation:done 400ms var(--ease-out)}
-.v2-wl h3{margin:0 0 4px;font:800 24px 'Manrope',sans-serif}
+.v2-wl h3{margin:0 0 4px;font:900 26px 'Archivo',sans-serif;font-stretch:118%;text-transform:uppercase}
 .v2-wl p{margin:0 0 14px}
 .v2-foot{display:flex;justify-content:space-between;gap:12px;font-size:13px;opacity:.6;flex-wrap:wrap}
 @media (max-width:760px){.v2-head{flex-direction:column;align-items:flex-start}.v2-head p{text-align:left}

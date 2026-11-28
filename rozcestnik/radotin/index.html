@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow"><title>Sluníčko Radotín – brzy otevíráme</title><meta name="description" content="Solární studio Sluníčko – Kamýk a Radotín">
-<link rel="icon" href="../../assets/icons/slunce.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&family=Manrope:wght@600;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<link rel="icon" href="../../assets/icons/slunce.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Carlito:wght@400;700&family=Archivo:wdth,wght@62..125,400;62..125,700;62..125,900&family=Limelight&family=Nunito:wght@800&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <style>
 *{box-sizing:border-box}html,body{height:100%}
 :root{--ease-out:cubic-bezier(.23,1,.32,1);--ink:#1C1A1B;--sun:#FFD23F;--y:#FFC20E;--flam:#F7A8BA;--blush:#F9C9D4;--butter:#FFF1B8}
@@ -11,21 +11,27 @@ a{color:inherit}img{max-width:100%;display:block}
 .ribbon a{color:#FFD23F;margin-left:6px}
 :focus-visible{outline:3px solid #1C1A1B;outline-offset:3px}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.2em .03em .08em;margin:-.2em -.03em -.08em}.w>span{display:inline-block}
-
-body{background:var(--butter);font-family:'Nunito Sans',sans-serif}
+.r-logo{display:inline-flex;align-items:center;gap:10px;color:#fff}.rl-t{display:flex;flex-direction:column;line-height:1}.rl-n{font-family:'Limelight',serif;font-size:26px;text-transform:uppercase}.rl-s{font:800 9px 'Nunito',sans-serif;letter-spacing:.28em;text-transform:uppercase;margin-top:4px}
+body{background:#1C1A1B;color:#fff;font-family:'Archivo',sans-serif}
 .wl{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);padding-top:24px}
 .wl-left{padding:clamp(28px,6vw,80px) max(20px,5vw)}
-.wl-left img.logo{height:60px;width:auto;margin-bottom:40px}
-.wl .tag{display:inline-block;background:#1C1A1B;color:#fff;border-radius:6px;padding:7px 10px;font:700 12px/1 'Carlito',sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
-.wl h1{margin:0 0 14px;font:800 clamp(44px,6vw,84px)/.95 'Manrope',sans-serif;letter-spacing:-.04em}
+.wl-left .logo{margin-bottom:40px}
+.wl .tag{display:inline-block;background:#FFD23F;color:#1C1A1B;border-radius:6px;padding:7px 10px;font:700 12px/1 'Carlito',sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+.wl h1{margin:0 0 14px;font:900 clamp(40px,5.6vw,80px)/.95 'Archivo',sans-serif;font-stretch:118%;text-transform:uppercase;letter-spacing:-.02em}
 .wl-lead{font-size:19px;max-width:40ch;margin:0 0 26px}
 .wl-perks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:8px;font-size:16px}
-.wl-perks li::before{content:"☀";margin-right:10px}
-.wl-right{background:#F7A8BA;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,5vw,64px)}
-.wl-right .big{font:800 clamp(120px,18vw,260px)/.8 'Manrope',sans-serif;letter-spacing:-.06em;color:#1C1A1B}
+.wl-perks li::before{content:"☀";margin-right:10px;color:#FFD23F}
+.wl .wl-btn{background:#FFD23F;color:#1C1A1B;border-color:#FFD23F}
+.wl .wl-row input{border-color:#fff}
+.wl .wl-consent a,.wl-back{color:#FFD23F}
+.wl .wl-msg.err{color:#F7A8BA}
+.wl .wl-row input:focus{box-shadow:0 0 0 4px rgba(255,210,63,.35)}
+@media (hover:hover) and (pointer:fine){.wl .wl-btn:hover{background:#ffe07a}}
+.wl-right{background:#FFD23F;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,5vw,64px)}
+.wl-right .big{font:900 clamp(80px,10vw,180px)/.8 'Archivo',sans-serif;font-stretch:118%;text-transform:uppercase;letter-spacing:-.04em;color:#1C1A1B}
 .wl-right p{margin:12px 0 0;font-size:16px;max-width:30ch}
 .wl-back{display:inline-block;margin-top:28px;font-weight:700}
-@media (max-width:860px){.wl{grid-template-columns:1fr}.wl-right{min-height:220px}.wl-right .big{font-size:110px}}
+@media (max-width:860px){.wl{grid-template-columns:1fr}.wl-right{min-height:220px}.wl-right .big{font-size:84px}}
 
 .wl-form{max-width:520px}
 .wl-label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
@@ -64,7 +70,7 @@ body{background:var(--butter);font-family:'Nunito Sans',sans-serif}
 <div class="ribbon">Stránka Radotín – čekací listina (náhled) <a href="../">← návrhy rozcestníku</a></div>
 <main class="wl">
   <section class="wl-left">
-    <img class="logo" src="../../assets/img/logo-puvodni.png" alt="Solární studio Sluníčko" width="180" height="60">
+    <div class="logo"><span class="r-logo" aria-label="Sluníčko Radotín"><svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"><circle cx="32" cy="32" r="11" fill="#FFD23F"/><path d="M32 4c3 4-3 6 0 10M32 50c3 4-3 6 0 10M4 32c4-3 6 3 10 0M50 32c4-3 6 3 10 0M12 12c5 1 2 6 7 7M45 45c5 1 2 6 7 7M52 12c-1 5-6 2-7 7M19 45c-1 5-6 2-7 7"/></g></svg><span class="rl-t"><span class="rl-n">Sluníčko</span><span class="rl-s">Solární studio · Radotín</span></span></span></div>
     <span class="tag" data-intro>Brzy · Praha 16 – Radotín</span>
     <h1 data-split>Sluníčko míří do Radotína.</h1>
     <p class="wl-lead" data-intro>Na náměstí Osvoboditelů připravujeme nové solární studio. Nechte nám e-mail a v den otevření vám napíšeme jako prvním.</p>
